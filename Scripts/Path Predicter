@@ -1,0 +1,155 @@
+// ==UserScript==
+// @name         TagPro Path Prediction
+// @include      http://*.koalabeast.com:*
+// @include      http://*.jukejuice.com:*
+// @include      http://*.newcompte.fr:*
+// @grant        none
+// ==/UserScript==
+
+function startFn() {
+    
+    var blockers = (function() {
+        var arr = [];
+        for (var x = 0; x < tagpro.map.length; x++) {
+            for (var y = 0; y < tagpro.map[x].length; y++) {
+                var tile = Math.floor(tagpro.map[x][y]);
+                var tileObj;
+                if (tile === 7) {
+                    tileObj = {x: x * 40 + 20, y: y * 40 + 20, r: 33};
+                    arr.push(tileObj);
+                } else if (tile === 1) {
+                    tileObj = {x: x * 40 + 20, y: y * 40 + 20, r: 39};
+                    arr.push(tileObj);
+                }
+            }
+        }
+        return arr;
+    })();
+    var boosts = (function() {
+        var arr = [];
+        var team = tagpro.players[tagpro.playerId].team;
+        for (var x = 0; x < tagpro.map.length; x++) {
+            for (var y = 0; y < tagpro.map[x].length; y++) {
+                var tile = Math.floor(tagpro.map[x][y]);
+                var tileObj;
+                if (tile === 5 || (team === 1 && tile === 14) || (team === 2 && tile === 15)) {
+                    tileObj = {x: x * 40 + 20, y: y * 40 + 20, r: 34, d: false};
+                    arr.push(tileObj);
+                }
+            }
+        }
+        return arr;
+    })();
+    var playerBodies = {};
+    var playerBodyProto = Box2D.Dynamics.b2Body.prototype;
+
+    playerBodyProto.SetAngle = function(c) {
+        if (typeof c === "undefined") {
+            c = 0;
+        }
+        this.SetPositionAndAngle(this.GetPosition(), c);
+        if (typeof this.player !== "undefined" && typeof playerBodies[this.player.id] === "undefined") {
+            playerBodies[this.player.id] = this;
+        }
+    };
+
+    playerBodyProto.PredictAhead = function(steps) {
+        var player = this.player;
+        var x = this.m_xf.position.x * 100 + 20;
+        var y = this.m_xf.position.y * 100 + 20;
+        var vx = this.m_linearVelocity.x;
+        var vy = this.m_linearVelocity.y;
+        var px = (player.right && !player.left) ? player.ac : (player.left && !player.right) ? -player.ac : 0;
+        var py = (player.down && !player.up) ? player.ac : (player.up && !player.down) ? -player.ac : 0;
+        var path = [];
+        for (var i = 0; i < steps; i++) {
+            x += vx * 1.66;
+            y += vy * 1.66;
+            path.push(x, y);
+            for (var j = 0; j < blockers.length; j++) {
+                var tile = blockers[j];
+                var xDif = tile.x - x;
+                var yDif = tile.y - y;
+                var dist = Math.sqrt(xDif * xDif + yDif * yDif);
+                if (dist < tile.r) {
+                    return path;
+                }
+            }
+            for (var k = 0; k < boosts.length; k++) {
+                var boost = boosts[k];
+                var xDif2 = boost.x - x;
+                var yDif2 = boost.y - y;
+                var dist2 = Math.sqrt(xDif2 * xDif2 + yDif2 * yDif2);
+                if (dist2 < boost.r) {
+                    if (boost.d) continue;
+                    boost.d = true;
+                    var absVx = Math.abs(vx);
+                    var absVy = Math.abs(vy);
+                    var vPer;
+                    if (absVx > absVy) {
+                        vPer = Math.abs(absVy / absVx);
+                        vx = (vx < 0) ? -7.5 : 7.5;
+                        vy = (vy < 0) ? -7.5 * vPer : 7.5 * vPer;
+                    } else {
+                        vPer = absVx / absVy;
+                        vy = (vy < 0) ? -7.5 : 7.5;
+                        vx = (vx < 0) ? -7.5 * vPer : 7.5 * vPer;
+                    }
+                } else {
+                    boost.d = false;
+                }
+            }
+            if ((px > 0 && vx < player.ms) || (px < 0 && vx > -player.ms)) {
+                vx += px;
+            }
+            if ((py > 0 && vy < player.ms) || (py < 0 && vy > -player.ms)) {
+                vy += py;
+            }
+            vx *= 0.9916666666666667;
+            vy *= 0.9916666666666667;
+        }
+        return path;
+    };
+
+    (function loop() {
+        requestAnimationFrame(loop);
+        var body = playerBodies[tagpro.playerId];
+        if (!body) return;
+        var player = body.player;
+        var path = body.PredictAhead(60);
+        createPath(path);
+    })();
+
+    function createPath(path) {
+        var layer = tagpro.renderer.layers.foreground;
+        var line = new PIXI.Graphics();
+        line.alpha = 0.3;
+        layer.addChild(line);
+        function cp(path) {
+            line.clear();
+            line.lineStyle(2, 0x000000);
+            line.drawPolygon(path);
+        }
+        createPath = cp;
+        return cp(path);
+    }
+}
+
+(function init(startFunction, startTime) {
+    if (Date.now() - startTime > 7500) {
+        return console.log("Initialization timeout");
+    }
+    if (window.tagpro && tagpro.players && tagpro.players[tagpro.playerId]) {
+        if (tagpro.spectator === false) {
+            startFunction();
+        } else if (tagpro.spectator === true) {
+            tagpro.socket.on("spectator", function(e) {
+                if (e === false) {
+                    startFunction();
+                }
+            });
+        }
+    } else {
+        setTimeout(init, 100, startFunction, startTime);
+    }
+})(startFn, Date.now());
