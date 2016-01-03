@@ -15,7 +15,7 @@ Certain code snippets or userscript features will cause a script to be denied.
 * Auto-Macros
 * Eval() usage (in most cases)
 * Improper information given to the player. Such as powerup timers to path predictions. Anything giving information on events happening off screen is in general not acceptable.
-* Anything extremtly obsene or negative
+* Anything extremely obsene or negative
   
 
 ####Spectator Scripts
