@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name            YAIS
 // @description     Makes improvements to your TagPro server page...
-//                    • Quick "Settings" popup menu 
+//                    • Quick "Settings" popup menu
 //                    • Quick "Flair Changer" popup menu
 //                    • Quick "Leaderboard" popup
 //                    • Wins Until Next Degree
@@ -14,7 +14,7 @@
 // @include         http://tangent.jukejuice.com*
 // @include         http://*.newcompte.fr*
 // @exclude         http://*/groups/*
-// @updateURL       https://gist.github.com/nabbynz/94926885ea020a832290/raw/TagPro_YAIS.user.js
+// @updateURL       https://github.com/TagproMLTP/TagproScriptsWhitelist/raw/1b5eb646d4a18d65734162e6e9bf4edb060be8e4/Scripts/Statistics/YAIS-0.8.0.user.js
 // @downloadURL     https://gist.github.com/nabbynz/94926885ea020a832290/raw/TagPro_YAIS.user.js
 // @grant           GM_setValue
 // @grant           GM_getValue
@@ -52,7 +52,7 @@ var options = {
     'HideMenuButton':            { display:'Make the "YAIS" Menu Button Invisible?',               type:'checkbox',      value:false,                                title:'Makes the "YAIS" Menu Button invisible until hovered over'},
     'ShowBoxShadowBorder':       { display:'Show Shadow around Border?',                           type:'checkbox',      value:false,                                title:''},
 
-    //You can manually edit the "value" for these options...   
+    //You can manually edit the "value" for these options...
     'SettingsMenuColor':         { display:'Background color for the settings menu',               type:'manual',        value:'#180452',     title:''}, //default: #180452
     'BigButtonColorText':        { display:'Font Color for the Big Buttons',                       type:'manual',        value:'#000000',     title:''}, //default: #000000
     'BigButtonColor':            { display:'Background Color for the Big Buttons',                 type:'manual',        value:'#ACE600',     title:''}, //default: #ACE600
@@ -88,7 +88,7 @@ function WhichPageAreWeOn(){
         return('joining');
     } else if ($('#play').length) { //Chosen server homepage
         return('server');
-    } else if (document.URL.indexOf('/profile/') > 0) { 
+    } else if (document.URL.indexOf('/profile/') > 0) {
         if ($('#showSettings').length) {
             return('profile'); //Profile page and logged in
         } else {
@@ -122,7 +122,7 @@ function comparer(index) {
         return $.isNumeric(valA) && $.isNumeric(valB) ? valA - valB : valA.localeCompare(valB);
     };
 }
-function getCellValue(row, index){ return $(row).children('td').eq(index).text(); }                
+function getCellValue(row, index){ return $(row).children('td').eq(index).text(); }
 
 function capitaliseFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -238,7 +238,7 @@ if (PageLoc === 'server') {
         })();
     }
 
-    
+
     if (LoggedIn) {
         $('#YAIS').append('<div id="flairwins_container" style="display:flex; justify-content:center; align-items:center; flex-wrap:wrap;"></div>');
         $('#flairwins_container').append('<div id="e_ShowFlair" class="flair" style="width:16px; margin-right:4px; background-image:url(/images/flair.png); cursor:pointer"></div>');
@@ -295,7 +295,7 @@ if (PageLoc === 'server') {
             $('#e_ShowFlair').on('click', function() {
                 $('#YAIS_Menu_Mask').css({ 'background':'#000' });
                 $('#YAIS_Menu_Mask').css({ 'height':$(document).height() });
-                $('#YAIS_Menu_Mask').fadeIn(300);  
+                $('#YAIS_Menu_Mask').fadeIn(300);
                 $('#flairmenu').fadeIn(300);
             });
 
@@ -393,7 +393,7 @@ if (PageLoc === 'server') {
                     }
                 }
             }
-            
+
             //=================================================================
             //Add Rolling 300 Stats...
             $('#Stats300 tr:last').after($(data).find('table:eq(0) tr:eq(0)')); //Header1
@@ -401,7 +401,7 @@ if (PageLoc === 'server') {
             $('#Stats300 tr:last').after($(data).find('table:eq(0) tr:eq(2)')); //All
             $('#Stats300 tr:last').after($(data).find('table:eq(0) tr:eq(3)')); //CTF
             $('#Stats300 tr:last').after($(data).find('table:eq(0) tr:eq(4)')); //Neutral
-            
+
             for (row=3; row<=5; row++) {
                 $('#Stats300 tr:eq('+row+') > td:eq(7)').text($('#Stats300 tr:eq('+row+') > td:eq(7)').text().toHHMMSS()); //Time
                 WTLD = ( parseInt($('#Stats300 tr:eq('+row+') > td:eq(2)').text()) + parseInt($('#Stats300 tr:eq('+row+') > td:eq(3)').text()) + parseInt($('#Stats300 tr:eq('+row+') > td:eq(4)').text()) + parseInt($('#Stats300 tr:eq('+row+') > td:eq(6)').text()) );
@@ -451,7 +451,7 @@ if (PageLoc === 'server') {
 
             $('#e_ShowSettingsMenu').click(function() {
                 $('#YAIS_Menu_Mask').css({ 'height':$(document).height() });
-                $('#YAIS_Menu_Mask').fadeIn(100);  
+                $('#YAIS_Menu_Mask').fadeIn(100);
                 $('#settingsInputs').load(GM_getValue('profilePage') + ' #settings', function(){
                     $('#YAIS_Menu_Mask').css({ 'background':'#000' }); //remove the loading gif from the background
                     $('#showEmail').parent('div').remove();
@@ -523,7 +523,7 @@ if (PageLoc === 'server') {
             });
 
             //$('#e_AddCurrentServerButton').insertAfter('#e_Show300PUPTable');
-            
+
         }); //.done()
     } //if loggedin
 
@@ -540,7 +540,7 @@ if (PageLoc === 'server') {
             e.preventDefault();
             if (new Date().getTime() - lastGetTime > 300000) { //only 'get' the tables if we haven't done so within the last 5 mins
                 $('#YAIS_Menu_Mask').css({ 'height':$(document).height() });
-                $('#YAIS_Menu_Mask').fadeIn(100);  
+                $('#YAIS_Menu_Mask').fadeIn(100);
                 $.get('/boards').done(function(data) {
                     lastGetTime = new Date().getTime();
                     $('#YAIS_Menu_Mask').css({ 'background':'#000' }); //remove the loading gif from the background
@@ -556,7 +556,7 @@ if (PageLoc === 'server') {
                     $('#Week').find('table').find('a').attr('target', '_blank');
                     $('#Month').find('table').find('a').attr('target', '_blank');
                     $('#Rolling').find('table').find('a').attr('target', '_blank');
-                    
+
                     $('#e_ShowLeaderboardPage table th').css('background', '#000');
                     $('#e_ShowLeaderboardPage table th').css('cursor', 'ns-resize');
 
@@ -620,7 +620,7 @@ if (PageLoc === 'server') {
             } else {
                 $('#YAIS_Menu_Mask').css({ 'background':'#000' });
                 $('#YAIS_Menu_Mask').css({ 'height':$(document).height() });
-                $('#YAIS_Menu_Mask').fadeIn(300);  
+                $('#YAIS_Menu_Mask').fadeIn(300);
                 $('#e_ShowLeaderboardPage').fadeToggle(300);
             }
         }
@@ -642,7 +642,7 @@ if (PageLoc === 'server') {
                 if (value.type === 'checkbox') {
                     $('#YAIS_Menu').append('<li style="list-style:none"><label><input type="' + value.type + '" id="' + key + '" class="'+ value.type + '" name="' + value.type + '" ' + (value.value === true ? 'checked' : '') + '>' + value.display + '</label></li>');
                 }
-                
+
                 //Hide certain elements according to the saved values...
                 if (key == 'ShowWinsUntilNextDegree') {
                     if (value.value === false) $('#e_ShowWinsUntilNextDegree').hide(0);
@@ -746,7 +746,7 @@ if (PageLoc === 'server') {
             });
             $('#YAIS_Menu').append('<div style="position:absolute; bottom:2px; right:5px; text-align:right"><a href="http://pastebin.com/6ULUbDET" target="_blank" style="font-size:11px; color:#888" title="Check pastebin for updates (opens in new tab)...">v' + GM_info.script.version + '</a</div>');
 
-            
+
             //=================================================================
             //Makes the buttons a bit prettier :)
             if (YAIS_Selections.PriddyButtons.value) {
@@ -766,7 +766,7 @@ if (PageLoc === 'server') {
             });
         });
 
-        
+
     } else { //not logged in - we need to do this separately because of the ajax 'get' delay messes some things up.
         $.each(YAIS_Selections, function(key, value) {
             //Build the menu...
@@ -811,7 +811,7 @@ if (PageLoc === 'server') {
         if (!LoggedIn) $('#YAIS_Menu').append('<div style="text-align:center;color:#f22; margin:10px auto 0">Note: You are NOT currently logged in</div>');
         $('#YAIS_Menu').append('<div style="position:absolute; bottom:2px; right:5px; text-align:right"><a href="http://pastebin.com/6ULUbDET" target="_blank" style="font-size:11px; color:#888" title="Check pastebin for updates (opens in new tab)...">v' + GM_info.script.version + '</a</div>');
 
-        
+
         //=================================================================
         //Makes the buttons a bit prettier :)
         if (YAIS_Selections.PriddyButtons.value) {
@@ -855,7 +855,7 @@ if (PageLoc === 'server') {
     $('#YAIS_Menu_Button').mouseleave(function() {
         $('#YAIS_Menu_Button').fadeTo(200, (YAIS_Selections.HideMenuButton.value ? 0 : 0.1));
     });
-    $("#YAIS_Menu").mouseleave(function() { 
+    $("#YAIS_Menu").mouseleave(function() {
         $('#YAIS_Menu').fadeOut(100);
     });
 
@@ -874,7 +874,7 @@ if (PageLoc === 'server') {
 
 function showSaveAttemptMessage() {
     var SaveAttemptMessage = 'This game is a save attempt!';
-    
+
     if (!$('#addSaveAttemptMessageSB').length) $('#mapInfo').after('<div id="addSaveAttemptMessageSB" style="font-size:14px;font-weight:bold; color:#f00; text-align:center; text-shadow:1px 2px 1px #222; clear:both">' + SaveAttemptMessage + '</div>');
     if (!$('#addSaveAttemptMessageBody').length) $('body').prepend('<div id="addSaveAttemptMessageBody" style="margin:0 auto; font-size:14px; font-weight:bold; color:#fff; background:#f00; text-align:center; text-shadow:1px 2px 1px #000; clear:both">' + SaveAttemptMessage + '</div>');
 }
@@ -882,7 +882,7 @@ function showSaveAttemptMessage() {
 tagpro.ready(function() {
     if (PageLoc === 'ingame') {
         YAIS_Selections = $.extend(true, {}, options, GM_getValue('YAIS_Selections', options));
-        
+
         //Show server stats in game (under the exit link)
         if (YAIS_Selections.ServerStatsInGame.value) {
             var intervalHandle;
@@ -906,7 +906,7 @@ tagpro.ready(function() {
             refreshStats();
         }
 
-        tagpro.socket.on('end', function(data) { 
+        tagpro.socket.on('end', function(data) {
             if (GM_getValue('YAIS_Selections').ShowRedditLink.value) {
                 setInterval(function() {
                     $('.redditLink').hide(0);
@@ -914,7 +914,7 @@ tagpro.ready(function() {
             }
         });
 
-        tagpro.socket.on('chat', function(data) { 
+        tagpro.socket.on('chat', function(data) {
             if (data.from === null) { //system message
                 if (data.message.indexOf('save attempt') >= 0) {
                     if (GM_getValue('YAIS_Selections').showSaveAttemptMessages.value) showSaveAttemptMessage();

@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name      Polite Text
-// @updateURL https://raw.githubusercontent.com/WitchTP/Tagpro-Userscripts/master/politeText.js
+// @updateURL https://github.com/TagproMLTP/TagproScriptsWhitelist/raw/master/Scripts/UI%20Enhancements/politeText.js
 // @version   1.4b6
 // @include   http://tagpro-*.koalabeast.com:*
 // @include   http://tangent.jukejuice.com:*

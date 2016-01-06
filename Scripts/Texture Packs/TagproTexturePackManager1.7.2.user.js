@@ -11,7 +11,7 @@
 // @include       http://tagpro-*.koalabeast.com*
 // @include       http://tangent.jukejuice.com*
 // @include       http://*.newcompte.fr*
-// @updateURL     https://gist.github.com/nabbynz/474bfbfb841d9a328418/raw/TagPro_Texture_Pack_Manager.user.js
+// @updateURL     https://github.com/TagproMLTP/TagproScriptsWhitelist/raw/a0df415ca7260a8b280483f93b3d00c910762a56/Scripts/Texture%20Packs/TagproTexturePackManager1.7.2.user.js
 // @downloadURL   https://gist.github.com/nabbynz/474bfbfb841d9a328418/raw/TagPro_Texture_Pack_Manager.user.js
 // @author        Dr.Holmes & ballparts & nabby
 // @version       1.7.2
@@ -63,7 +63,7 @@ tagpro.ready(function() {
 		var spinBall = !!(GM_getValue('TPTPR_Spin', false));
 		var spinOverlay = !!(GM_getValue('TPTPR_ShowBallOverlaysMenu', false) && GM_getValue('TPTPR_SpinOverlay', false) && GM_getValue('TPTPR_Overlay', false));
         var differentBalls = !!(GM_getValue('TPTPR_DifferentBallTexture', false) && Texture_Pack.balls);
-		
+
 		//Set the wallpaper...
 		var wallpaperType = 'wallpaper';
 		if (GM_getValue('TPTPR_UseInGameWallpaper', false)) wallpaperType = 'wallpaperingame';
@@ -140,7 +140,7 @@ tagpro.ready(function() {
 		if (GM_getValue('TPTPR_TransparentBall', 1) < 1 || spinBall || spinOverlay || differentBalls) {
             if (differentBalls) {
                 var loadDifferentBalls = new PIXI.AssetLoader([Texture_Pack.balls]);
-                
+
                 var setupDifferentBalls = function() {
                     var texture = PIXI.Texture.fromImage([Texture_Pack.balls]); //will be taken from cache if available
                     var redTexture = new PIXI.Texture(texture, new PIXI.Rectangle(texture.width-80, 0, 40, 40));
@@ -170,12 +170,12 @@ tagpro.ready(function() {
                             player.sprites.ball.addChild(player.sprites.newBall);
                         }
                     };
-                    
+
                     tr.createBallSprite = function(player) {
                         var texture = player.team == 1 ? "redball" : "blueball";
                         player.sprites.actualBall = tagpro.tiles.draw(player.sprites.ball, texture, {x: 0, y: 0}, null, null, 0.01);
                         player.sprites.actualBall.tileId = texture;
-                        
+
                         tr.createNewBall(player);
 
                         player.sprites.newBall.alpha = GM_getValue('TPTPR_TransparentBall', 1);
@@ -188,10 +188,10 @@ tagpro.ready(function() {
                         if (GM_getValue('TPTPR_ShowBallOverlaysMenu', false) && GM_getValue('TPTPR_Overlay', false) && TPTPR_Overlays.hasOwnProperty(GM_getValue('TPTPR_Overlay')) ) tr.TPTPR_CreateOverlay(player);
                     };
                 };
-                
+
                 loadDifferentBalls.onComplete = setupDifferentBalls;
                 loadDifferentBalls.load();
-                
+
 
             } else {
                 tr.createBallSprite = function(player) {
@@ -340,7 +340,7 @@ tagpro.ready(function() {
                 var dropZoneHeight = '40px';
 				if ((image === 'tiles') || (image === 'splats') || (image === 'wallpaper') || (image === 'wallpaperingame')) dropZoneHeight = '220px';
                 if (image === 'balls') dropZoneWidth = '80px';
-                
+
 				if (texturePack[image].indexOf('#') === 0) { //color
 					$('#TPTPR_DropZone').html('').css({ 'background':texturePack[image], 'height':dropZoneHeight });
 				} else { //image
@@ -687,7 +687,7 @@ tagpro.ready(function() {
 				$('#TPTPR_SavedPacks').slideUp(400, function() {
                     $('#TPTPR_PacksHeading').text('⇩ My Saved Texture Packs ⇩');
                 });
-				
+
 			} else {
 				if ((image === 'wallpaper') || (image === 'wallpaperingame')) {
 					image = 'tiles';
@@ -1062,179 +1062,179 @@ tagpro.ready(function() {
 function setObjects() {
     TPTPR_Packs = {
         'vanilla':              { displayname:'Vanilla',                          author:'TagPro Defaults',          url:{tiles:'/images/tiles.png',
-                                                                                                                          speedpad:'/images/speedpad.png', 
-                                                                                                                          speedpadred:'/images/speedpadred.png', 
-                                                                                                                          speedpadblue:'/images/speedpadblue.png', 
-                                                                                                                          splats:'/images/splats.png', 
+                                                                                                                          speedpad:'/images/speedpad.png',
+                                                                                                                          speedpadred:'/images/speedpadred.png',
+                                                                                                                          speedpadblue:'/images/speedpadblue.png',
+                                                                                                                          splats:'/images/splats.png',
                                                                                                                           portal:'/images/portal.png'} },
-        'mydnd':                { displayname:'My Drag and Dropped',              author:'Me!',                      url:{tiles:'', 
-                                                                                                                          speedpad:'', 
-                                                                                                                          speedpadred:'', 
-                                                                                                                          speedpadblue:'', 
-                                                                                                                          splats:'', 
+        'mydnd':                { displayname:'My Drag and Dropped',              author:'Me!',                      url:{tiles:'',
+                                                                                                                          speedpad:'',
+                                                                                                                          speedpadred:'',
+                                                                                                                          speedpadblue:'',
+                                                                                                                          splats:'',
                                                                                                                           portal:''} },
 
-        'aaron215':             { displayname:'Aaron215',                         author:'Aaron215',                 url:{tiles:'http://i.imgur.com/pHTyBeO.png', 
-                                                                                                                          speedpad:'http://i.imgur.com/p7yauSo.png', 
-                                                                                                                          speedpadred:'http://i.imgur.com/1pq6LLP.png', 
-                                                                                                                          speedpadblue:'http://i.imgur.com/KbRQdOb.png', 
-                                                                                                                          splats:'http://i.imgur.com/tDsbgPv.png', 
-                                                                                                                          portal:'http://i.imgur.com/K0PQHJ6.png'} },        
-        'briochelight':         { displayname:'Brioche Light',                    author:'brioche',                  url:{tiles:'http://i.imgur.com/WDLyCrr.png', 
-                                                                                                                          speedpad:'http://i.imgur.com/wtpkZWw.png', 
-                                                                                                                          speedpadred:'http://i.imgur.com/l6OMel5.png', 
-                                                                                                                          speedpadblue:'http://i.imgur.com/IAAOkQz.png', 
-                                                                                                                          splats:'http://i.imgur.com/kbkOC6x.png', 
+        'aaron215':             { displayname:'Aaron215',                         author:'Aaron215',                 url:{tiles:'http://i.imgur.com/pHTyBeO.png',
+                                                                                                                          speedpad:'http://i.imgur.com/p7yauSo.png',
+                                                                                                                          speedpadred:'http://i.imgur.com/1pq6LLP.png',
+                                                                                                                          speedpadblue:'http://i.imgur.com/KbRQdOb.png',
+                                                                                                                          splats:'http://i.imgur.com/tDsbgPv.png',
+                                                                                                                          portal:'http://i.imgur.com/K0PQHJ6.png'} },
+        'briochelight':         { displayname:'Brioche Light',                    author:'brioche',                  url:{tiles:'http://i.imgur.com/WDLyCrr.png',
+                                                                                                                          speedpad:'http://i.imgur.com/wtpkZWw.png',
+                                                                                                                          speedpadred:'http://i.imgur.com/l6OMel5.png',
+                                                                                                                          speedpadblue:'http://i.imgur.com/IAAOkQz.png',
+                                                                                                                          splats:'http://i.imgur.com/kbkOC6x.png',
                                                                                                                           portal:'http://i.imgur.com/CXgNNTs.png'} },
-        'camspp_lh':            { displayname:'Cam\'sPP Light',                   author:'StrayCam',                 url:{tiles:'http://i.imgur.com/22NGRaG.png', 
-                                                                                                                          speedpad:'http://i.imgur.com/4N7Moqk.png', 
-                                                                                                                          speedpadred:'http://i.imgur.com/z4H9yVL.png', 
-                                                                                                                          speedpadblue:'http://i.imgur.com/L9AvmXe.png', 
-                                                                                                                          splats:'http://i.imgur.com/pJ3HlcS.png', 
+        'camspp_lh':            { displayname:'Cam\'sPP Light',                   author:'StrayCam',                 url:{tiles:'http://i.imgur.com/22NGRaG.png',
+                                                                                                                          speedpad:'http://i.imgur.com/4N7Moqk.png',
+                                                                                                                          speedpadred:'http://i.imgur.com/z4H9yVL.png',
+                                                                                                                          speedpadblue:'http://i.imgur.com/L9AvmXe.png',
+                                                                                                                          splats:'http://i.imgur.com/pJ3HlcS.png',
                                                                                                                           portal:'http://i.imgur.com/a0JUw8q.png'} },
-        'camspp_dsh':           { displayname:'Cam\'sPP Dark Sniper Horizontal',  author:'StrayCam',                 url:{tiles:'http://i.imgur.com/2B8Vaux.png', 
-                                                                                                                          speedpad:'http://i.imgur.com/lVixtut.png', 
-                                                                                                                          speedpadred:'http://i.imgur.com/7Fe8iFB.png', 
-                                                                                                                          speedpadblue:'http://i.imgur.com/kU7LnOW.png', 
-                                                                                                                          splats:'http://i.imgur.com/pJ3HlcS.png', 
+        'camspp_dsh':           { displayname:'Cam\'sPP Dark Sniper Horizontal',  author:'StrayCam',                 url:{tiles:'http://i.imgur.com/2B8Vaux.png',
+                                                                                                                          speedpad:'http://i.imgur.com/lVixtut.png',
+                                                                                                                          speedpadred:'http://i.imgur.com/7Fe8iFB.png',
+                                                                                                                          speedpadblue:'http://i.imgur.com/kU7LnOW.png',
+                                                                                                                          splats:'http://i.imgur.com/pJ3HlcS.png',
                                                                                                                           portal:'http://i.imgur.com/mp79U9E.png'} },
-        'camspp_lsd':           { displayname:'Cam\'sPP Light Sniper Diagonal',   author:'StrayCam',                 url:{tiles:'http://i.imgur.com/bhFWbNW.png', 
-                                                                                                                          speedpad:'http://i.imgur.com/22eydBT.png', 
-                                                                                                                          speedpadred:'http://i.imgur.com/mdS1Ex7.png', 
-                                                                                                                          speedpadblue:'http://i.imgur.com/oWxNfsx.png', 
-                                                                                                                          splats:'http://i.imgur.com/pJ3HlcS.png', 
+        'camspp_lsd':           { displayname:'Cam\'sPP Light Sniper Diagonal',   author:'StrayCam',                 url:{tiles:'http://i.imgur.com/bhFWbNW.png',
+                                                                                                                          speedpad:'http://i.imgur.com/22eydBT.png',
+                                                                                                                          speedpadred:'http://i.imgur.com/mdS1Ex7.png',
+                                                                                                                          speedpadblue:'http://i.imgur.com/oWxNfsx.png',
+                                                                                                                          splats:'http://i.imgur.com/pJ3HlcS.png',
                                                                                                                           portal:'http://i.imgur.com/mp79U9E.png'} },
-        'cmyk':                 { displayname:'cMYK',                             author:'MagicPigeon',              url:{tiles:'http://i.imgur.com/v9VK5Oq.png', 
-                                                                                                                          speedpad:'http://i.imgur.com/5SFGnrT.png', 
-                                                                                                                          speedpadred:'http://i.imgur.com/qcgBVls.png', 
-                                                                                                                          speedpadblue:'http://i.imgur.com/nKExBLD.png', 
-                                                                                                                          splats:'http://i.imgur.com/7yhZMNT.png', 
+        'cmyk':                 { displayname:'cMYK',                             author:'MagicPigeon',              url:{tiles:'http://i.imgur.com/v9VK5Oq.png',
+                                                                                                                          speedpad:'http://i.imgur.com/5SFGnrT.png',
+                                                                                                                          speedpadred:'http://i.imgur.com/qcgBVls.png',
+                                                                                                                          speedpadblue:'http://i.imgur.com/nKExBLD.png',
+                                                                                                                          splats:'http://i.imgur.com/7yhZMNT.png',
                                                                                                                           portal:'http://i.imgur.com/DTGpCj1.png'} },
-        'crystal':              { displayname:'Crystal',                          author:'MagicPigeon',              url:{tiles:'http://i.imgur.com/ixFW9oE.png', 
-                                                                                                                          speedpad:'http://i.imgur.com/VZKNMH1.png', 
-                                                                                                                          speedpadred:'http://i.imgur.com/VsGp8i1.png', 
-                                                                                                                          speedpadblue:'http://i.imgur.com/EQn1E5s.png', 
-                                                                                                                          splats:'http://i.imgur.com/mtH38yR.png', 
+        'crystal':              { displayname:'Crystal',                          author:'MagicPigeon',              url:{tiles:'http://i.imgur.com/ixFW9oE.png',
+                                                                                                                          speedpad:'http://i.imgur.com/VZKNMH1.png',
+                                                                                                                          speedpadred:'http://i.imgur.com/VsGp8i1.png',
+                                                                                                                          speedpadblue:'http://i.imgur.com/EQn1E5s.png',
+                                                                                                                          splats:'http://i.imgur.com/mtH38yR.png',
                                                                                                                           portal:'http://i.imgur.com/70X2UY4.png'} },
-        'derezzed':             { displayname:'Derezzed',                          author:'-salt-',                  url:{tiles:'http://i.imgur.com/H9qQUAW.png', 
-                                                                                                                          speedpad:'http://i.imgur.com/BXtUHQG.png', 
-                                                                                                                          speedpadred:'http://i.imgur.com/G92Af0J.png', 
-                                                                                                                          speedpadblue:'http://i.imgur.com/R9FAvpp.png', 
-                                                                                                                          splats:'http://i.imgur.com/WXHAA3I.png', 
+        'derezzed':             { displayname:'Derezzed',                          author:'-salt-',                  url:{tiles:'http://i.imgur.com/H9qQUAW.png',
+                                                                                                                          speedpad:'http://i.imgur.com/BXtUHQG.png',
+                                                                                                                          speedpadred:'http://i.imgur.com/G92Af0J.png',
+                                                                                                                          speedpadblue:'http://i.imgur.com/R9FAvpp.png',
+                                                                                                                          splats:'http://i.imgur.com/WXHAA3I.png',
                                                                                                                           portal:'http://i.imgur.com/vJDZam9.png'} },
-        'electric':             { displayname:'Electric',                         author:'Bug',                      url:{tiles:'http://i.imgur.com/iFeKuuV.png', 
-                                                                                                                          speedpad:'http://i.imgur.com/XrVvThx.png', 
-                                                                                                                          speedpadred:'http://i.imgur.com/GLHA3R8.png', 
-                                                                                                                          speedpadblue:'http://i.imgur.com/UcFhoVC.png', 
-                                                                                                                          splats:'http://i.imgur.com/wxJ2ImS.png', 
+        'electric':             { displayname:'Electric',                         author:'Bug',                      url:{tiles:'http://i.imgur.com/iFeKuuV.png',
+                                                                                                                          speedpad:'http://i.imgur.com/XrVvThx.png',
+                                                                                                                          speedpadred:'http://i.imgur.com/GLHA3R8.png',
+                                                                                                                          speedpadblue:'http://i.imgur.com/UcFhoVC.png',
+                                                                                                                          splats:'http://i.imgur.com/wxJ2ImS.png',
                                                                                                                           portal:'http://i.imgur.com/GqZyi5s.png'} },
-        'elementplus':          { displayname:'Element+',                         author:'MagicPigeon',              url:{tiles:'http://i.imgur.com/GAGacLn.png', 
-                                                                                                                          speedpad:'http://i.imgur.com/KkQKHLo.png', 
-                                                                                                                          speedpadred:'http://i.imgur.com/we2eBpa.png', 
-                                                                                                                          speedpadblue:'http://i.imgur.com/TKaRnU8.png', 
-                                                                                                                          splats:'http://i.imgur.com/Lzg8j80.png', 
+        'elementplus':          { displayname:'Element+',                         author:'MagicPigeon',              url:{tiles:'http://i.imgur.com/GAGacLn.png',
+                                                                                                                          speedpad:'http://i.imgur.com/KkQKHLo.png',
+                                                                                                                          speedpadred:'http://i.imgur.com/we2eBpa.png',
+                                                                                                                          speedpadblue:'http://i.imgur.com/TKaRnU8.png',
+                                                                                                                          splats:'http://i.imgur.com/Lzg8j80.png',
                                                                                                                           portal:'http://i.imgur.com/FlPW49l.png'} },
-        'flat':                 { displayname:'Flat',                             author:'Bug',                      url:{tiles:'http://i.imgur.com/YC4vQM4.png', 
-                                                                                                                          speedpad:'http://i.imgur.com/UoHGwMS.png', 
-                                                                                                                          speedpadred:'http://i.imgur.com/CWrsplK.png', 
-                                                                                                                          speedpadblue:'http://i.imgur.com/8WrsT4f.png', 
-                                                                                                                          splats:'http://i.imgur.com/AYO8rbQ.png', 
+        'flat':                 { displayname:'Flat',                             author:'Bug',                      url:{tiles:'http://i.imgur.com/YC4vQM4.png',
+                                                                                                                          speedpad:'http://i.imgur.com/UoHGwMS.png',
+                                                                                                                          speedpadred:'http://i.imgur.com/CWrsplK.png',
+                                                                                                                          speedpadblue:'http://i.imgur.com/8WrsT4f.png',
+                                                                                                                          splats:'http://i.imgur.com/AYO8rbQ.png',
                                                                                                                           portal:'http://i.imgur.com/TYWr2Pu.png'} },
-        'funhouse':             { displayname:'Funhouse',                         author:'Sunna',                    url:{tiles:'http://i.imgur.com/eJebHd6.png', 
-                                                                                                                          speedpad:'http://i.imgur.com/pv0jGMF.png', 
-                                                                                                                          speedpadred:'http://i.imgur.com/7DibrCL.png', 
-                                                                                                                          speedpadblue:'http://i.imgur.com/syjTZuf.png', 
-                                                                                                                          splats:'http://i.imgur.com/KJ8hdEc.png', 
+        'funhouse':             { displayname:'Funhouse',                         author:'Sunna',                    url:{tiles:'http://i.imgur.com/eJebHd6.png',
+                                                                                                                          speedpad:'http://i.imgur.com/pv0jGMF.png',
+                                                                                                                          speedpadred:'http://i.imgur.com/7DibrCL.png',
+                                                                                                                          speedpadblue:'http://i.imgur.com/syjTZuf.png',
+                                                                                                                          splats:'http://i.imgur.com/KJ8hdEc.png',
                                                                                                                           portal:'http://i.imgur.com/4lmhtGF.png'} },
-        'kindergarten':         { displayname:'Kindergarten',                     author:'Clydas',                   url:{tiles:'http://i.imgur.com/y3tbmOS.png', 
-                                                                                                                          speedpad:'http://i.imgur.com/UEpX1wb.png', 
-                                                                                                                          speedpadred:'http://i.imgur.com/tUC9CMG.png', 
-                                                                                                                          speedpadblue:'http://i.imgur.com/5yA3IOx.png', 
-                                                                                                                          splats:'http://i.imgur.com/ZGSTp2s.png', 
+        'kindergarten':         { displayname:'Kindergarten',                     author:'Clydas',                   url:{tiles:'http://i.imgur.com/y3tbmOS.png',
+                                                                                                                          speedpad:'http://i.imgur.com/UEpX1wb.png',
+                                                                                                                          speedpadred:'http://i.imgur.com/tUC9CMG.png',
+                                                                                                                          speedpadblue:'http://i.imgur.com/5yA3IOx.png',
+                                                                                                                          splats:'http://i.imgur.com/ZGSTp2s.png',
                                                                                                                           portal:'http://i.imgur.com/6Lbd9Aw.png'} },
-        'minima':               { displayname:'Minima',                           author:'Canvas',                   url:{tiles:'http://i.imgur.com/jGAtqcr.png', 
-                                                                                                                          speedpad:'http://i.imgur.com/pJEZKnh.png', 
-                                                                                                                          speedpadred:'http://i.imgur.com/OlDPpdM.png', 
-                                                                                                                          speedpadblue:'http://i.imgur.com/HgmJ9yg.png', 
-                                                                                                                          splats:'http://i.imgur.com/ytIIuQS.png', 
+        'minima':               { displayname:'Minima',                           author:'Canvas',                   url:{tiles:'http://i.imgur.com/jGAtqcr.png',
+                                                                                                                          speedpad:'http://i.imgur.com/pJEZKnh.png',
+                                                                                                                          speedpadred:'http://i.imgur.com/OlDPpdM.png',
+                                                                                                                          speedpadblue:'http://i.imgur.com/HgmJ9yg.png',
+                                                                                                                          splats:'http://i.imgur.com/ytIIuQS.png',
                                                                                                                           portal:'http://i.imgur.com/DeevRGe.png'} },
-        'modern':               { displayname:'Modern',                           author:'Mitzimoto',                url:{tiles:'http://i.imgur.com/stGySx9.png', 
-                                                                                                                          speedpad:'http://i.imgur.com/aCHBxVO.png', 
-                                                                                                                          speedpadred:'http://i.imgur.com/xKupyqI.png', 
-                                                                                                                          speedpadblue:'http://i.imgur.com/4dybmaE.png', 
-                                                                                                                          splats:'http://i.imgur.com/gXpvWEE.png', 
+        'modern':               { displayname:'Modern',                           author:'Mitzimoto',                url:{tiles:'http://i.imgur.com/stGySx9.png',
+                                                                                                                          speedpad:'http://i.imgur.com/aCHBxVO.png',
+                                                                                                                          speedpadred:'http://i.imgur.com/xKupyqI.png',
+                                                                                                                          speedpadblue:'http://i.imgur.com/4dybmaE.png',
+                                                                                                                          splats:'http://i.imgur.com/gXpvWEE.png',
                                                                                                                           portal:'http://i.imgur.com/KAo7jkl.png'} },
-        'mtbad':                { displayname:'MTBad',                            author:'mtbkr24',                  url:{tiles:'http://i.imgur.com/YnJ9THs.png', 
-                                                                                                                          speedpad:'http://i.imgur.com/Lgiwb5Q.png', 
-                                                                                                                          speedpadred:'http://i.imgur.com/XuN3NbB.png', 
-                                                                                                                          speedpadblue:'http://i.imgur.com/5JKeYSQ.png', 
-                                                                                                                          splats:'http://i.imgur.com/yL2TZJS.png', 
+        'mtbad':                { displayname:'MTBad',                            author:'mtbkr24',                  url:{tiles:'http://i.imgur.com/YnJ9THs.png',
+                                                                                                                          speedpad:'http://i.imgur.com/Lgiwb5Q.png',
+                                                                                                                          speedpadred:'http://i.imgur.com/XuN3NbB.png',
+                                                                                                                          speedpadblue:'http://i.imgur.com/5JKeYSQ.png',
+                                                                                                                          splats:'http://i.imgur.com/yL2TZJS.png',
                                                                                                                           portal:'http://i.imgur.com/xJe0hBy.png'} },
-        'musclecups':           { displayname:'Muscle\'s Cup',                    author:'Muscle Cups',              url:{tiles:'http://i.imgur.com/Px8cdyU.png', 
-                                                                                                                          speedpad:'http://i.imgur.com/FjdVdQG.png', 
-                                                                                                                          speedpadred:'http://i.imgur.com/MtTupDg.png', 
-                                                                                                                          speedpadblue:'http://i.imgur.com/FZNnJZf.png', 
-                                                                                                                          splats:'http://i.imgur.com/3m8yX7z.png', 
+        'musclecups':           { displayname:'Muscle\'s Cup',                    author:'Muscle Cups',              url:{tiles:'http://i.imgur.com/Px8cdyU.png',
+                                                                                                                          speedpad:'http://i.imgur.com/FjdVdQG.png',
+                                                                                                                          speedpadred:'http://i.imgur.com/MtTupDg.png',
+                                                                                                                          speedpadblue:'http://i.imgur.com/FZNnJZf.png',
+                                                                                                                          splats:'http://i.imgur.com/3m8yX7z.png',
                                                                                                                           portal:'http://i.imgur.com/RQXDv00.png'} },
-        'nilla':                { displayname:'Nilla',                            author:'Dotsarecool',              url:{tiles:'http://i.imgur.com/Tdwjnkn.png', 
-                                                                                                                          speedpad:'http://i.imgur.com/bawbyQm.png', 
-                                                                                                                          speedpadred:'http://i.imgur.com/tDxnPWm.png', 
-                                                                                                                          speedpadblue:'http://i.imgur.com/NQaEKB0.png', 
-                                                                                                                          splats:'http://i.imgur.com/kHUlTwP.png', 
+        'nilla':                { displayname:'Nilla',                            author:'Dotsarecool',              url:{tiles:'http://i.imgur.com/Tdwjnkn.png',
+                                                                                                                          speedpad:'http://i.imgur.com/bawbyQm.png',
+                                                                                                                          speedpadred:'http://i.imgur.com/tDxnPWm.png',
+                                                                                                                          speedpadblue:'http://i.imgur.com/NQaEKB0.png',
+                                                                                                                          splats:'http://i.imgur.com/kHUlTwP.png',
                                                                                                                           portal:'http://i.imgur.com/v8aO03S.png'} },
-        'pastelpro':            { displayname:'Pastel Pro',                       author:'BMO',                      url:{tiles:'http://i.imgur.com/22ehddn.png', 
-                                                                                                                          speedpad:'http://i.imgur.com/r7beMZp.png', 
-                                                                                                                          speedpadred:'http://i.imgur.com/xAHMOOV.png', 
-                                                                                                                          speedpadblue:'http://i.imgur.com/R1TGL5x.png', 
-                                                                                                                          splats:'http://i.imgur.com/NKBd7nE.png', 
+        'pastelpro':            { displayname:'Pastel Pro',                       author:'BMO',                      url:{tiles:'http://i.imgur.com/22ehddn.png',
+                                                                                                                          speedpad:'http://i.imgur.com/r7beMZp.png',
+                                                                                                                          speedpadred:'http://i.imgur.com/xAHMOOV.png',
+                                                                                                                          speedpadblue:'http://i.imgur.com/R1TGL5x.png',
+                                                                                                                          splats:'http://i.imgur.com/NKBd7nE.png',
                                                                                                                           portal:'http://i.imgur.com/GbdQNJJ.png'} },
-        'seaweedrb':            { displayname:'Seaweed Red/Blue',                 author:'Borgen',                   url:{tiles:'http://i.imgur.com/e4UjsQs.png', 
-                                                                                                                          speedpad:'http://i.imgur.com/ONxlcFL.png', 
-                                                                                                                          speedpadred:'http://i.imgur.com/DwUHM2I.png', 
-                                                                                                                          speedpadblue:'http://i.imgur.com/DpJS96w.png', 
-                                                                                                                          splats:'http://i.imgur.com/ZrimG2x.png', 
+        'seaweedrb':            { displayname:'Seaweed Red/Blue',                 author:'Borgen',                   url:{tiles:'http://i.imgur.com/e4UjsQs.png',
+                                                                                                                          speedpad:'http://i.imgur.com/ONxlcFL.png',
+                                                                                                                          speedpadred:'http://i.imgur.com/DwUHM2I.png',
+                                                                                                                          speedpadblue:'http://i.imgur.com/DpJS96w.png',
+                                                                                                                          splats:'http://i.imgur.com/ZrimG2x.png',
                                                                                                                           portal:'http://i.imgur.com/44fPSBq.png'} },
-        'sleek':                { displayname:'Sleek',                            author:'DaEvil1',                  url:{tiles:'http://i.imgur.com/1zgobTs.png', 
-                                                                                                                          speedpad:'http://i.imgur.com/zI4SzAE.png', 
-                                                                                                                          speedpadred:'http://i.imgur.com/8Ucws0m.png', 
-                                                                                                                          speedpadblue:'http://i.imgur.com/VDIrsng.png', 
-                                                                                                                          splats:'http://i.imgur.com/AlkZRug.png', 
+        'sleek':                { displayname:'Sleek',                            author:'DaEvil1',                  url:{tiles:'http://i.imgur.com/1zgobTs.png',
+                                                                                                                          speedpad:'http://i.imgur.com/zI4SzAE.png',
+                                                                                                                          speedpadred:'http://i.imgur.com/8Ucws0m.png',
+                                                                                                                          speedpadblue:'http://i.imgur.com/VDIrsng.png',
+                                                                                                                          splats:'http://i.imgur.com/AlkZRug.png',
                                                                                                                           portal:'http://i.imgur.com/1RRAMHe.png'} },
-        'starwars':             { displayname:'Star Wars',                        author:'Moosen',                   url:{tiles:'http://i.imgur.com/lxV0cnH.png', 
-                                                                                                                          speedpad:'http://i.imgur.com/WgeuDEz.png', 
-                                                                                                                          speedpadred:'http://i.imgur.com/cqY1LTe.png', 
-                                                                                                                          speedpadblue:'http://i.imgur.com/bCUoqXq.png', 
-                                                                                                                          splats:'http://i.imgur.com/XIndyGS.png', 
+        'starwars':             { displayname:'Star Wars',                        author:'Moosen',                   url:{tiles:'http://i.imgur.com/lxV0cnH.png',
+                                                                                                                          speedpad:'http://i.imgur.com/WgeuDEz.png',
+                                                                                                                          speedpadred:'http://i.imgur.com/cqY1LTe.png',
+                                                                                                                          speedpadblue:'http://i.imgur.com/bCUoqXq.png',
+                                                                                                                          splats:'http://i.imgur.com/XIndyGS.png',
                                                                                                                           portal:'http://i.imgur.com/FtLHfuz.png'} },
-        'suave':                { displayname:'Suave',                            author:'fxu',                      url:{tiles:'http://i.imgur.com/Lz0Kbua.png', 
-                                                                                                                          speedpad:'http://i.imgur.com/Hh2PIwl.png', 
-                                                                                                                          speedpadred:'http://i.imgur.com/Ps5E70J.png', 
-                                                                                                                          speedpadblue:'http://i.imgur.com/OsjYgED.png', 
-                                                                                                                          splats:'http://i.imgur.com/BTjNBz3.png', 
+        'suave':                { displayname:'Suave',                            author:'fxu',                      url:{tiles:'http://i.imgur.com/Lz0Kbua.png',
+                                                                                                                          speedpad:'http://i.imgur.com/Hh2PIwl.png',
+                                                                                                                          speedpadred:'http://i.imgur.com/Ps5E70J.png',
+                                                                                                                          speedpadblue:'http://i.imgur.com/OsjYgED.png',
+                                                                                                                          splats:'http://i.imgur.com/BTjNBz3.png',
                                                                                                                           portal:'http://i.imgur.com/siMVwoM.png'} },
-        'tranquilitydark':      { displayname:'Tranquility Dark',                 author:'R e t r o',                url:{tiles:'http://i.imgur.com/WyfRfld.png', 
-                                                                                                                          speedpad:'http://i.imgur.com/tZE7l6b.png', 
-                                                                                                                          speedpadred:'http://i.imgur.com/AGMgt6S.png', 
-                                                                                                                          speedpadblue:'http://i.imgur.com/nokGBIr.png', 
-                                                                                                                          splats:'http://i.imgur.com/tDsbgPv.png', 
+        'tranquilitydark':      { displayname:'Tranquility Dark',                 author:'R e t r o',                url:{tiles:'http://i.imgur.com/WyfRfld.png',
+                                                                                                                          speedpad:'http://i.imgur.com/tZE7l6b.png',
+                                                                                                                          speedpadred:'http://i.imgur.com/AGMgt6S.png',
+                                                                                                                          speedpadblue:'http://i.imgur.com/nokGBIr.png',
+                                                                                                                          splats:'http://i.imgur.com/tDsbgPv.png',
                                                                                                                           portal:'http://i.imgur.com/gFC1dUu.png'} },
-        'tranquilitylight':     { displayname:'Tranquility Light',                author:'R e t r o',                url:{tiles:'http://i.imgur.com/cM7dUPy.png', 
-                                                                                                                          speedpad:'http://i.imgur.com/qhr6Z6b.png', 
-                                                                                                                          speedpadred:'http://i.imgur.com/cVyjSvA.png', 
-                                                                                                                          speedpadblue:'http://i.imgur.com/ZqlxWI5.png', 
-                                                                                                                          splats:'http://i.imgur.com/ay5FAXS.png', 
+        'tranquilitylight':     { displayname:'Tranquility Light',                author:'R e t r o',                url:{tiles:'http://i.imgur.com/cM7dUPy.png',
+                                                                                                                          speedpad:'http://i.imgur.com/qhr6Z6b.png',
+                                                                                                                          speedpadred:'http://i.imgur.com/cVyjSvA.png',
+                                                                                                                          speedpadblue:'http://i.imgur.com/ZqlxWI5.png',
+                                                                                                                          splats:'http://i.imgur.com/ay5FAXS.png',
                                                                                                                           portal:'http://i.imgur.com/ZvBGaJF.png'} },
-        'ultrasmooth':          { displayname:'Ultra Smooth',                     author:'Professor Tag',            url:{tiles:'http://i.imgur.com/zltfpGb.png', 
-                                                                                                                          speedpad:'http://i.imgur.com/zxubWbQ.png', 
-                                                                                                                          speedpadred:'http://i.imgur.com/yJGhLPt.png', 
-                                                                                                                          speedpadblue:'http://i.imgur.com/K02G9jE.png', 
-                                                                                                                          splats:'http://i.imgur.com/tDsbgPv.png', 
+        'ultrasmooth':          { displayname:'Ultra Smooth',                     author:'Professor Tag',            url:{tiles:'http://i.imgur.com/zltfpGb.png',
+                                                                                                                          speedpad:'http://i.imgur.com/zxubWbQ.png',
+                                                                                                                          speedpadred:'http://i.imgur.com/yJGhLPt.png',
+                                                                                                                          speedpadblue:'http://i.imgur.com/K02G9jE.png',
+                                                                                                                          splats:'http://i.imgur.com/tDsbgPv.png',
                                                                                                                           portal:'http://i.imgur.com/hffUZ2J.png'} },
-        'vortex':               { displayname:'Vortex',                           author:'MagicPigeon',              url:{tiles:'http://i.imgur.com/jlbr0Gr.png', 
-                                                                                                                          speedpad:'http://i.imgur.com/hL1YlFu.png', 
-                                                                                                                          speedpadred:'http://i.imgur.com/gxQeYTw.png', 
-                                                                                                                          speedpadblue:'http://i.imgur.com/pbXh4b1.png', 
-                                                                                                                          splats:'http://i.imgur.com/36fUJG2.png', 
+        'vortex':               { displayname:'Vortex',                           author:'MagicPigeon',              url:{tiles:'http://i.imgur.com/jlbr0Gr.png',
+                                                                                                                          speedpad:'http://i.imgur.com/hL1YlFu.png',
+                                                                                                                          speedpadred:'http://i.imgur.com/gxQeYTw.png',
+                                                                                                                          speedpadblue:'http://i.imgur.com/pbXh4b1.png',
+                                                                                                                          splats:'http://i.imgur.com/36fUJG2.png',
                                                                                                                           portal:'http://i.imgur.com/H1cHH5w.png'} },
     };
     /*---------------------------------------------------------------------------------------------------------------------------------------------------------------------*/

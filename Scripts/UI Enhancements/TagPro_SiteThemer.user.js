@@ -5,7 +5,7 @@
 // @include         http://tagpro-*.koalabeast.com*
 // @include         http://tangent.jukejuice.com*
 // @include         http://*.newcompte.fr*
-// @updateURL       https://gist.github.com/nabbynz/962e2178bf0c7a6d34e3/raw/TagPro_SiteThemer.user.js
+// @updateURL       https://github.com/TagproMLTP/TagproScriptsWhitelist/raw/1b5eb646d4a18d65734162e6e9bf4edb060be8e4/Scripts/UI%20Enhancements/TagPro_SiteThemer.user.js
 // @downloadURL     https://gist.github.com/nabbynz/962e2178bf0c7a6d34e3/raw/TagPro_SiteThemer.user.js
 // @grant           GM_setValue
 // @grant           GM_getValue
@@ -60,7 +60,7 @@ function WhichPageAreWeOn(){
         return('groups');
     } else if ($('#play').length) { //Chosen server homepage
         return('server');
-    } else if (document.URL.indexOf('/profile/') > 0) { 
+    } else if (document.URL.indexOf('/profile/') > 0) {
         if ($('#showSettings').length) {
             return('profile'); //Profile page and logged in
         } else {
@@ -78,7 +78,7 @@ tagpro.ready(function() {
 
     var TST_Selections = $.extend(true, options, GM_getValue('TST_Selections', options));
     var TST_Presets = $.extend(true, presets, GM_getValue('TST_Presets', presets));
-    
+
     if (GM_getValue('TST_Selections') === undefined) { //first time
         GM_setValue('TST_Presets', TST_Presets);
         GM_setValue('TST_Selections_Preset', 'default');
@@ -93,7 +93,7 @@ tagpro.ready(function() {
         addStyles = (typeof addStyles === "undefined") ? true : addStyles;
         var color1 = '';
         var color2 = '';
-        
+
         if (addStyles) {
             //Background color...
             if (TST_Selections.TST_ShowBackgroundColor.enabled) {
@@ -151,7 +151,7 @@ tagpro.ready(function() {
             $('a[href^="/maps"]').parent('div').css('justify-content', 'center');
             $('a[href^="/maps"]').parent('div').css('flex-wrap', 'wrap');
             $('#TST_Links').prop('value', TST_Selections.TST_Links.value);
-            GM_addStyle('.TST { color:'+TST_Selections.TST_Links.value+' }'); 
+            GM_addStyle('.TST { color:'+TST_Selections.TST_Links.value+' }');
             GM_addStyle('.TST:hover { text-decoration:underline }');
             $('a').not('.button, .redditLink').addClass('TST');
 
@@ -159,8 +159,8 @@ tagpro.ready(function() {
             GM_addStyle('body { font-family:'+TST_Selections.TST_MainFont.value+' }');
 
         } //addStyles
-        
-        
+
+
         //Add Text Shadow (easier to read on light backgrounds)...
         if ((PageLoc != 'joining') && (PageLoc != 'profile')) $('.section > a').css('text-shadow', '1px 1px 1px #000000');
 
@@ -168,7 +168,7 @@ tagpro.ready(function() {
         if ((PageLoc === 'groups') && (TST_Selections.TST_ModifyGroups.enabled)) {
             groupCSS();
         }
-        
+
         if (TST_Selections.TST_ShowRedditLink.enabled) {
             $('.redditLink').parent('div').show(0);
         } else {
@@ -198,7 +198,7 @@ tagpro.ready(function() {
         } else {
             $('a[href^="/donate"]').parent('div').hide(0);
         }
-        
+
         if (TST_Selections.TST_ShowKoalaBeast.enabled) {
             $('h2.footer').parent('a').show(0);
             $('h2.footer').parent('a').css('display','');
@@ -262,7 +262,7 @@ tagpro.ready(function() {
                 $.each(fonts, function(index, fontName) {
                     $('#'+key).append('<option value="'+fontName+'"' + (fontName === TST_Selections[key].value ? ' selected' : '') + '>'+fontName+'</option>');
                 });
-                    
+
             }
         });
         $('#custom1').parent().parent().css('margin-top', '5px');
@@ -278,10 +278,10 @@ tagpro.ready(function() {
                                        '</div>');
         GM_addStyle('.TST_savecustom { margin:2px; padding:2px; font-size:11px; color:#fff; background:#690000; border-radius:4px; cursor:pointer }');
         GM_addStyle('.TST_savecustom:hover { background:#FF0000 }');
-        
+
         updateAll();
 
-        
+
         //=================================================================
         $('.TST_savecustom').on('click', function() {
             var id = $(this).attr('id').substring(9);
@@ -397,7 +397,7 @@ tagpro.ready(function() {
             TST_Selections[$(this).attr('id')].enabled = $(this).is(':checked');
             GM_setValue('TST_Selections', TST_Selections);
             if ($(this).attr('id') === 'TST_ShowBackgroundColor') showMessage('Reload this page to see changes...', 3, '#066');
-            if (($(this).attr('id') === 'TST_ShowRedditLink') || 
+            if (($(this).attr('id') === 'TST_ShowRedditLink') ||
                 ($(this).attr('id') === 'TST_ShowChangeServer') ||
                 ($(this).attr('id') === 'TST_ShowSocialLinks') ||
                 ($(this).attr('id') === 'TST_ShowArrowKeys') ||
@@ -439,19 +439,19 @@ tagpro.ready(function() {
         $('#TST_Menu_Button').mouseleave(function() {
             $('#TST_Menu_Button').fadeTo(200, (TST_Selections.TST_HideMenuButton.enabled ? 0 : 0.1));
         });
-        $("#TST_Menu_Close").on('click', function() { 
+        $("#TST_Menu_Close").on('click', function() {
             $('#TST_Menu').fadeOut(100);
         });
     }
 
-    
+
     var handle;
     function groupCSS(){
         clearInterval(handle);
         if ((tagpro.group.socket === null) || (tagpro.group.socket.connected === false)) {
             handle = setInterval(groupCSS, 100);
         }
-        
+
         if ((tagpro.group.socket) && (tagpro.group.socket.connected)) {
             if (TST_Selections.TST_ShowBackgroundColor.enabled) {
                 color1 = TST_Selections.TST_BackgroundColor.value.split(',')[0] || presets.default.values.TST_BackgroundColor;
@@ -474,7 +474,7 @@ tagpro.ready(function() {
             $('a').css({'color'                    : '#FFFFFF'});
 
             $('.score').css({'margin'              : '5px 5px 0 0'});
-            
+
             $('#settings').css({'top'              : '70px',
                                 'left'             : '5px',
                                 'width'            : '320px',
@@ -518,7 +518,7 @@ tagpro.ready(function() {
                                'right'             : '0px',
                                'border'            : '1px solid rgba(255,255,255,0.20)',
                                'border-radius'     : '5px' });
-            
+
             $('#chat').css({'position'             : 'absolute',
                             'margin'               : '40px -35px 0 -35px',
                             'border'               : '1px solid rgba(255,255,255,0.20)',
@@ -533,11 +533,11 @@ tagpro.ready(function() {
             $('.ui-sortable').css({'font-weight'   : 'bold' });
 
             $('leader.you').css({'color'           : '#FFFFFF' });
-            
+
             $('input.h2').css({'width'             : '58%' });
 
             $('#playerOptions').children('a').css('color', '#000000');
-            
+
         }
     }
 });

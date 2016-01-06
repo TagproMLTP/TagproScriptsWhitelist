@@ -11,7 +11,7 @@
 // @grant           GM_getValue
 // @grant           GM_deleteValue
 // @grant           GM_addStyle
-// @updateURL       https://gist.github.com/nabbynz/cdcbe32db403901d7d20/raw/TagPro_WinLossTimeline.user.js
+// @updateURL       https://github.com/TagproMLTP/TagproScriptsWhitelist/raw/1b5eb646d4a18d65734162e6e9bf4edb060be8e4/Scripts/Statistics/TagproWinLossTimeline.user.js
 // @downloadURL     https://gist.github.com/nabbynz/cdcbe32db403901d7d20/raw/TagPro_WinLossTimeline.user.js
 // @license         GPL version 3 or any later version; http://www.gnu.org/copyleft/gpl.html
 // @author          nabby
@@ -41,7 +41,7 @@ var options = { //defaults
     'Pause_Color':              { display:' Color when "Paused"',                          type:'manual',        value:'#ff9900',     title:''},
     'Other_Color':              { display:' Color for a "Win"',                            type:'manual',        value:'#aaaaaa',     title:''}, //not used?
 };
-    
+
 function WhichPageAreWeOn(){
     if (window.location.port) { //In a real game
         return('ingame');
@@ -49,7 +49,7 @@ function WhichPageAreWeOn(){
         return('joining');
     } else if ($('#play').length) { //Chosen server homepage
         return('server');
-    } else if (document.URL.indexOf('/profile/') > 0) { 
+    } else if (document.URL.indexOf('/profile/') > 0) {
         if ($('#showSettings').length) {
             return('profile'); //Profile page and logged in
         } else {
@@ -116,7 +116,7 @@ function bindEvents() {
     $('#WLT_Settings_Button').on('click', function() {
         $('#WLT_Settings_Menu').slideToggle(400);
     });
-    $("#WLT_Settings_Menu").mouseleave(function() { 
+    $("#WLT_Settings_Menu").mouseleave(function() {
         $('#WLT_Settings_Menu').fadeOut(100);
     });
     $('#WLT_Settings_Menu .checkbox').on('click', function() {
@@ -213,7 +213,7 @@ function convertOldData() {
             for (i = 0; i < WLT_Data_Old.length; i++) {
                 WLT_Data_New.push({ result:WLT_Data_Old[i], score:'', date:'', map:'', blueredplayercount:'', fullgamelength:'', playedgamelength:'', playedgametime:'' });
             }
-            
+
             GM_setValue('WLT', WLT_Data_New);
         }
     }
@@ -242,7 +242,7 @@ function load_WLT_Data() {
 
     if ( (GM_getValue('WLT') === 'undefined') || (GM_getValue('WLT') === undefined) ) GM_setValue('WLT', '');
     WLT_Data = GM_getValue('WLT');
-    
+
     if ((WLT_Data.length > WLT_Selections.MaxGames.value) && (WLT_Selections.MaxGames.value > 0)) {
         while (WLT_Data.length > WLT_Selections.MaxGames.value) {
             WLT_Data.shift();
@@ -250,7 +250,7 @@ function load_WLT_Data() {
         GM_setValue('WLT', WLT_Data);
         WLT_Data = GM_getValue('WLT');
     }
-    
+
     if (!WLT_Selections.ShowTimelineScrollBar.value) {
         var New_Cell_Width = Math.floor(Timeline_MaxWidth / WLT_Data.length);
         if (New_Cell_Width < Cell_Width) Cell_Width = New_Cell_Width - 1;
@@ -291,7 +291,7 @@ function load_WLT_Data() {
                 } else {
                     $('#WLT_Timeline').append('<div class="wlt_win" title="' + WLT_Title + '"></div>');
                 }
-                
+
                 //Update Stats for Streak...
                 total_wins++;
                 if ( (temp_win_streak === 0) || ((i > 0) && (WLT_Data[i-1].result == 'W')) ) temp_win_streak++;
@@ -378,13 +378,13 @@ function load_WLT_Data() {
                     }
                 }
                 break;
-                
+
             case 'P':
                 WLT_Title = 'Timeline recording was paused for ' + WLT_Data[i].score + ' game' + (WLT_Data[i].score == 1 ? '' : 's');
                 WLT_Title += '\nYou missed: ' + WLT_Data[i].caps + ' Win' + (WLT_Data[i].caps == 1 ? '' : 's') + ', ' + WLT_Data[i].hold + ' Loss' + (WLT_Data[i].hold == 1 ? '' : 'es') + ', ' + WLT_Data[i].returns + ' Tie' + (WLT_Data[i].returns == 1 ? '' : 's');
                 $('#WLT_Timeline').append('<div class="wlt_pause" title="' + WLT_Title + '"></div>');
                 break;
-                
+
             default:
                 //if $('#WLT').append('<div class="wlt_other" title="Late Join/Refresh/Other?"></div>');
                 temp_win_streak = 0;
@@ -458,11 +458,11 @@ function load_WLT_Data() {
         $('#WLT').append('<div style="text-align:center; font-style:italic; color:' + WLT_Selections.Tie_Color.value + '; padding:5px 0 0; text-shadow:2px 1px 2px #000000">No data for Win/Loss Timeline (go play some games!)</div>');
     }
 } //load_WLT_Data()
- 
+
 
 function showSaveAttemptMessage() {
     var SaveAttemptMessage = 'This game is a save attempt!';
-    
+
     if (!$('#addSaveAttemptMessageSB').length) $('#mapInfo').after('<div id="addSaveAttemptMessageSB" style="font-size:16px;font-weight:bold; color:#f00; text-align:center; text-shadow:1px 2px 1px #222; clear:both">' + SaveAttemptMessage + '</div>');
     if (!$('#addSaveAttemptMessageBody').length) $('body').prepend('<div id="addSaveAttemptMessageBody" style="margin:20px auto; font-size:16px;font-weight:bold; color:#f00; text-align:center; text-shadow:1px 2px 1px #222; clear:both">' + SaveAttemptMessage + '</div>');
 }
@@ -492,7 +492,7 @@ tagpro.ready(function() {
         setSavedValues();
         bindEvents();
     }
-    
+
     if (PageLoc === 'ingame') {
         var WLT_Data = [];
         var joinTime;
@@ -500,9 +500,9 @@ tagpro.ready(function() {
         var redscore = 0;
         var mapname = '';
         var saveAttempt = false;
- 
+
         if (jQuery.type(GM_getValue('WLT')) === 'array') WLT_Data = GM_getValue('WLT');
- 
+
         tagpro.socket.on('time', function(message) {
             if (tagpro.state == 3) { //before the actual start
                 joinTime = new Date().getTime();
@@ -514,17 +514,17 @@ tagpro.ready(function() {
                 }
             }
         });
- 
+
         tagpro.socket.on('map', function(data) {
             mapname = data.info.name;
         });
- 
+
         tagpro.socket.on('score', function(data) {
             bluescore = data.b;
             redscore = data.r;
         });
-       
-        tagpro.socket.on('chat', function(data) { 
+
+        tagpro.socket.on('chat', function(data) {
             if (data.from === null) { //system message
                 if (data.message.indexOf('This is a save attempt!') >= 0) {  //STILL TESTING THIS! DOES IT WORK?
                     saveAttempt = true;
@@ -549,11 +549,11 @@ tagpro.ready(function() {
                     }
                     if (WLT_Data[WLT_Data.length-1].result == 'P') {
                         WLT_Data[WLT_Data.length-1].score++;       //'score' is being used for the game count here
-                        if (paused_result == 'W') { 
+                        if (paused_result == 'W') {
                             WLT_Data[WLT_Data.length-1].caps++;    //'caps' is being used for wins here
-                        } else if (paused_result == 'L') { 
+                        } else if (paused_result == 'L') {
                             if (!saveAttempt) WLT_Data[WLT_Data.length-1].hold++;    //'hold' is being used for losses here
-                        } else if (paused_result == 'T') { 
+                        } else if (paused_result == 'T') {
                             WLT_Data[WLT_Data.length-1].returns++; //'returns' is being used for ties here
                         }
                     } else {
@@ -582,37 +582,37 @@ tagpro.ready(function() {
                         var inGameTime = Math.round(100 - (((joinTime - startTime) / (endTime - startTime)) * 100));
 
                         if (data.winner == 'tie') {
-                            WLT_Data.push({result:(saveAttempt ? 'ST': 'T'), 
-                                           score:bluescore+''+redscore, 
-                                           date:endTime, 
-                                           map:mapname, 
-                                           blueredplayercount:bluePlayers+''+redPlayers, 
-                                           fullgamelength:(endTime-startTime)/1000, 
-                                           playedgamelength:(endTime-joinTime)/1000, 
-                                           playedgametime:inGameTime, 
-                                           caps:tagpro.players[tagpro.playerId]["s-captures"], 
-                                           hold:tagpro.players[tagpro.playerId]["s-hold"], 
+                            WLT_Data.push({result:(saveAttempt ? 'ST': 'T'),
+                                           score:bluescore+''+redscore,
+                                           date:endTime,
+                                           map:mapname,
+                                           blueredplayercount:bluePlayers+''+redPlayers,
+                                           fullgamelength:(endTime-startTime)/1000,
+                                           playedgamelength:(endTime-joinTime)/1000,
+                                           playedgametime:inGameTime,
+                                           caps:tagpro.players[tagpro.playerId]["s-captures"],
+                                           hold:tagpro.players[tagpro.playerId]["s-hold"],
                                            returns:tagpro.players[tagpro.playerId]["s-returns"] });
                         } else if ( ((data.winner == 'red') && (tagpro.players[tagpro.playerId].team == 1)) || ((data.winner == 'blue') && (tagpro.players[tagpro.playerId].team == 2)) ) {
-                            WLT_Data.push({result:(saveAttempt ? 'SW': 'W'), 
-                                           score:(bluescore > redscore ? bluescore+''+redscore : redscore+''+bluescore), 
-                                           date:endTime, 
-                                           map:mapname, 
-                                           blueredplayercount:(bluescore > redscore ? bluePlayers+''+redPlayers : redPlayers+''+bluePlayers), 
-                                           fullgamelength:(endTime-startTime)/1000, 
-                                           playedgamelength:(endTime-joinTime)/1000, 
-                                           playedgametime:inGameTime, 
-                                           caps:tagpro.players[tagpro.playerId]["s-captures"], 
-                                           hold:tagpro.players[tagpro.playerId]["s-hold"], 
+                            WLT_Data.push({result:(saveAttempt ? 'SW': 'W'),
+                                           score:(bluescore > redscore ? bluescore+''+redscore : redscore+''+bluescore),
+                                           date:endTime,
+                                           map:mapname,
+                                           blueredplayercount:(bluescore > redscore ? bluePlayers+''+redPlayers : redPlayers+''+bluePlayers),
+                                           fullgamelength:(endTime-startTime)/1000,
+                                           playedgamelength:(endTime-joinTime)/1000,
+                                           playedgametime:inGameTime,
+                                           caps:tagpro.players[tagpro.playerId]["s-captures"],
+                                           hold:tagpro.players[tagpro.playerId]["s-hold"],
                                            returns:tagpro.players[tagpro.playerId]["s-returns"] });
                         } else if ( ((data.winner == 'red') && (tagpro.players[tagpro.playerId].team == 2)) || ((data.winner == 'blue') && (tagpro.players[tagpro.playerId].team == 1)) ) {
-                            WLT_Data.push({result:(saveAttempt ? 'SL': 'L'), 
-                                           score:(bluescore < redscore ? bluescore+''+redscore : redscore+''+bluescore), 
-                                           date:endTime, 
-                                           map:mapname, 
-                                           blueredplayercount:(bluescore < redscore ? bluePlayers+''+redPlayers : redPlayers+''+bluePlayers), 
-                                           fullgamelength:(endTime-startTime)/1000, 
-                                           playedgamelength:(endTime-joinTime)/1000, 
+                            WLT_Data.push({result:(saveAttempt ? 'SL': 'L'),
+                                           score:(bluescore < redscore ? bluescore+''+redscore : redscore+''+bluescore),
+                                           date:endTime,
+                                           map:mapname,
+                                           blueredplayercount:(bluescore < redscore ? bluePlayers+''+redPlayers : redPlayers+''+bluePlayers),
+                                           fullgamelength:(endTime-startTime)/1000,
+                                           playedgamelength:(endTime-joinTime)/1000,
                                            playedgametime:inGameTime,
                                            caps:tagpro.players[tagpro.playerId]["s-captures"],
                                            hold:tagpro.players[tagpro.playerId]["s-hold"],
