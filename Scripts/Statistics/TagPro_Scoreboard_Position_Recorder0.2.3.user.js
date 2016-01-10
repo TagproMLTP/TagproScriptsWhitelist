@@ -4,7 +4,7 @@
 // @version         0.2.3
 // @include         http://tagpro-*.koalabeast.com*
 // @exclude         http://tagpro-maptest*.koalabeast.com*
-// @updateURL       https://github.com/TagproMLTP/TagproScriptsWhitelist/raw/f2dff8e364c9d236b85a3b313875641a7154e5ee/Scripts/Statistics/TagPro_Scoreboard_Position_Recorder0.2.3.user.js
+// @updateURL       https://gist.github.com/nabbynz/11f2a4a74723c7cb33cc/raw/TagPro_Scoreboard_Position_Recorder.user.js
 // @downloadURL     https://gist.github.com/nabbynz/11f2a4a74723c7cb33cc/raw/TagPro_Scoreboard_Position_Recorder.user.js
 // @grant           GM_setValue
 // @grant           GM_getValue
@@ -648,11 +648,11 @@ tagpro.ready(function() {
                             return score;
                         } else { //scores are the same - sort by player id...
                             return a.id - b.id;
-
+                        
                         }
                     });
                     savePlayerData(playersSorted);
-
+                    
                 } else {
                     setTimeout(function() {
                         showMiniTable(false, 'Not Recorded - played < ' + SBPR_Options.SBPR_MinimumGameTime.value + '%');

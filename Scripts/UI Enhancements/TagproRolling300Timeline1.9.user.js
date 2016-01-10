@@ -11,7 +11,7 @@
 // @grant           GM_getValue
 // @grant           GM_deleteValue
 // @grant           GM_addStyle
-// @updateURL       https://github.com/TagproMLTP/TagproScriptsWhitelist/raw/f2dff8e364c9d236b85a3b313875641a7154e5ee/Scripts/UI%20Enhancements/TagproRolling300Timeline1.9.user.js
+// @updateURL       https://gist.github.com/nabbynz/23a54cace27ad097d671/raw/TagPro_Rolling300Timeline.user.js
 // @downloadURL     https://gist.github.com/nabbynz/23a54cace27ad097d671/raw/TagPro_Rolling300Timeline.user.js
 // @license         GPL version 3 or any later version; http://www.gnu.org/copyleft/gpl.html
 // @author          nabby
@@ -790,7 +790,7 @@ function getGameInfoAsText(gameData) {
     text += "\n" + new Date(parseInt(Date.parse(gameData.played))).toLocaleTimeString() + ' (' + new Date(parseInt(Date.parse(gameData.played))).toDateString() + ')';
     text += "\nYou played for " + secondsToHMS(gameData.timePlayed);
     text += "\n\nCaps: " + gameData.captures + " | Grabs: " + gameData.grabs + " | Drops: " + gameData.drops + " | Popped: " + gameData.pops + " | Tags: " + gameData.tags + " | Returns: " + gameData.returns +
-            "\nHold: " + secondsToHMS(gameData.hold) + " | Prevent: " + secondsToHMS(gameData.prevent) + " | Support: " + gameData.support + " | PUP%: " + (gameData.powerups / gameData.potentialPowerups * 100).toFixed(2) +
+            "\nHold: " + secondsToHMS(gameData.hold) + " | Prevent: " + secondsToHMS(gameData.prevent) + " | Support: " + gameData.support + " | PUP%: " + (gameData.powerups / gameData.potentialPowerups * 100).toFixed(2) + 
             "\nCaps/Grab: " + ((gameData.grabs?gameData.captures:0)/(gameData.grabs?gameData.grabs:1)).toFixed(3) + " | Tags/Pop: " + ((gameData.pops?gameData.tags:0)/(gameData.pops?gameData.pops:1)).toFixed(3);
 
     return text;
@@ -1087,7 +1087,7 @@ function showData() {
          label: 'SSA'
         }
     ];
-
+    
     setTimeout(function() {
         var myPieChart = new Chart(ctx).Pie(gamesPieDataSets, options);
     }, 100);
@@ -1143,8 +1143,8 @@ function showData() {
     GM_addStyle('.gamesperday_bar { position:relative; margin-left:'+(dayCounts.length < 200 ? 1 : 0)+'px; background:#666 }');
     GM_addStyle('.gamesperday_bar:hover { opacity:0.6 }');
 
-
-
+    
+    
     //# Games Per Day...
     $R300_Messages.append('<div id="R300_GamesPerDay" style="font-size:11px">' + daysWithGamesCount + ' Game Days (' + (data.length/daysWithGamesCount).toFixed(2) + ' games/day, ' + secondsToHMS(totalTimePlayed/daysWithGamesCount) + ' mins/day)</div>');
 
@@ -1584,7 +1584,7 @@ if (GM_getValue('R300_Selections') === 'undefined') { //first time
 
 
 //Setup the main div location depending on which page we are on...
-var R300_Div = '<div id="R300" style="position:relative; margin:20px auto 0 auto; padding:10px; width:-webkit-fit-content; color:#fff; text-align:center; text-shadow:2px 1px 2px #000000; border-radius:8px; ' + (R300_Selections.ShowBoxShadowBorder.value ? 'box-shadow:#fff 0px 0px 10px; ' : '') + 'background:rgba(0,0,0,0.1);  white-space:nowrap;">' +
+var R300_Div = '<div id="R300" style="position:relative; margin:20px auto 0 auto; padding:10px; width:-webkit-fit-content; color:#fff; text-align:center; text-shadow:2px 1px 2px #000000; border-radius:8px; ' + (R300_Selections.ShowBoxShadowBorder.value ? 'box-shadow:#fff 0px 0px 10px; ' : '') + 'background:rgba(0,0,0,0.1);  white-space:nowrap;">' + 
     '<div style="display:inline-block">Rolling 300 Timeline</div>' +
     '<div id="R300_Settings_Button" style="display:inline-block; font-size:11px; text-align:center; margin-left:10px; height:13px; width:14px; border:2px solid #3A8CBB; border-radius:8px; cursor:pointer" title="Options">&#8286;</div>' +
     '</div>';
@@ -1615,3 +1615,4 @@ if ($('#R300').length) {
 }
 
 loadData();
+

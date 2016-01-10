@@ -10,7 +10,7 @@
 // @grant           GM_getValue
 // @grant           GM_deleteValue
 // @grant           GM_addStyle
-// @updateURL       https://github.com/TagproMLTP/TagproScriptsWhitelist/raw/1b5eb646d4a18d65734162e6e9bf4edb060be8e4/Scripts/Statistics/TagproRolling300Timeline.user.js
+// @updateURL       https://gist.github.com/nabbynz/23a54cace27ad097d671/raw/TagPro_Rolling300Timeline.user.js
 // @downloadURL     https://gist.github.com/nabbynz/23a54cace27ad097d671/raw/TagPro_Rolling300Timeline.user.js
 // @license         GPL version 3 or any later version; http://www.gnu.org/copyleft/gpl.html
 // @author          nabby
@@ -76,7 +76,7 @@ function secondsToHMS(d) {
 function scaleBetween(unscaledNum, minAllowed, maxAllowed, min, max){
     return (maxAllowed-minAllowed)*(unscaledNum-min)/(max - min) + minAllowed;
 }
-
+ 
 function capitaliseFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
@@ -88,7 +88,7 @@ function WhichPageAreWeOn(){
         return('joining');
     } else if ($('#play').length) { //Chosen server homepage
         return('server');
-    } else if (document.URL.indexOf('/profile/') > 0) {
+    } else if (document.URL.indexOf('/profile/') > 0) { 
         if ($('#showSettings').length) {
             return('profile'); //Profile page and logged in
         } else {
@@ -128,7 +128,7 @@ function getUsefulText(value, what){
 
 function getOldestGamesBlock(data, numberGamesToShow) {
     numberGamesToShow = numberGamesToShow || 3;
-
+    
     if (data.length > numberGamesToShow) {
         var blocks = '<div style="display:inline-block; margin-right:5px" title="Oldest '+numberGamesToShow+' Games">';
         for (var i=0; i<(numberGamesToShow); i++) {
@@ -195,7 +195,7 @@ function getLatestGamesBlock(data, numberGamesToShow) {
 function getNextGamePercentage(data) {
     var i, wins=0, losses=0;
     var IfWin='', IfLose='';
-
+    
     for (i=0; i<data.length; i++) {
         if (data[i].outcome == 1) {
             wins++;
@@ -300,7 +300,7 @@ function getGamesTilNextFlair(data, winP) { //thanks Snaps!
 
 function showWinPercentageHeader(data) {
     var WinP_Div = '<div id="R300_WinNextHeader" style="position:relative; width:100%; top:1px; font-size:12px;font-weight:bold; color:#fff; text-align:center; text-shadow:1px 2px 1px #222; clear:both"></div>';
-
+    
     if (PageLoc === 'server') { //Chosen server home page
         $('body').prepend(WinP_Div);
     } else if ((PageLoc === 'profile') || (PageLoc === 'profileNotOurs')) { //Profile page
@@ -311,7 +311,7 @@ function showWinPercentageHeader(data) {
     } else if (PageLoc === 'ingame') { //in a game
         $('body').prepend(WinP_Div);
     }
-
+    
     //if (((PageLoc === 'server') && (R300_Selections.R300HeaderPages.title.indexOf('Home') >= 0)) || (((PageLoc === 'profile') || (PageLoc === 'profileNotOurs')) && (R300_Selections.R300HeaderPages.title.indexOf('Profile') >= 0)) || ((PageLoc === 'joining') && (R300_Selections.R300HeaderPages.title.indexOf('Joiner') >= 0)) || ((PageLoc === 'ingame') && (R300_Selections.R300HeaderPages.title.indexOf('Game') >= 0)) ) {
         //alert('yar');
         var blocks = "";
@@ -545,7 +545,7 @@ function setSavedValues() {
                     $('#R300_InnerContainer').show(0);
                 }
             }
-
+            
         } else if (key === 'R300HeaderPages') {
             if (PageLoc === 'server') {
                 if (R300_Selections[key].title.indexOf('Home') < 0) {
@@ -572,7 +572,7 @@ function setSavedValues() {
                     $('#R300_WinNextHeader').show(0);
                 }
             }
-
+            
         } else if (key == 'ShowR300PUPsPerGame') {
                 if (value.value === true) {
                     $('.R300_pups_pergame').show(0);
@@ -588,7 +588,7 @@ function setSavedValues() {
             } else {
                 $('#R300').css('box-shadow', 'none');
             }
-
+            
         } else if (value.type === 'checkbox') {
             //Hide certain elements according to the saved values...
             if (value.value === false) {
@@ -638,7 +638,7 @@ function bindEvents() {
     $('#R300_Settings_Button').on('click', function() {
         $('#R300_Settings_Menu').slideToggle(400);
     });
-    $("#R300_Settings_Menu").mouseleave(function() {
+    $("#R300_Settings_Menu").mouseleave(function() { 
         $('#R300_Settings_Menu').fadeOut(100);
     });
     $('#R300WinBands input').on('click', function() {
@@ -753,7 +753,7 @@ function bindEvents() {
 
 function setTimelineCellHeights(Cell_Width) {
     Cell_Width = Cell_Width || 1;
-
+    
     $('.r300_win').css     ({ 'display':'inline-block', 'cursor':'pointer', 'margin-left':               (R300_Selections.ShowR300ShowGap.value ? 1 : 0)+'px', 'background-color':R300_Selections.Win_Color.value,     'height':'10px', 'width':Cell_Width+'px' });
     $('.r300_loss').css    ({ 'display':'inline-block', 'cursor':'pointer', 'margin-left':               (R300_Selections.ShowR300ShowGap.value ? 1 : 0)+'px', 'background-color':R300_Selections.Loss_Color.value,    'height':'10px', 'width':Cell_Width+'px' });
     $('.r300_dc').css      ({ 'display':'inline-block', 'cursor':'pointer', 'margin'     :'0px 0px 2px '+(R300_Selections.ShowR300ShowGap.value ? 1 : 0)+'px', 'background-color':R300_Selections.DC_Color.value,      'height':' 6px', 'width':Cell_Width+'px' });
@@ -765,7 +765,7 @@ function setTimelineCellHeights(Cell_Width) {
 
 function getGameInfoAsText(gameData) {
     var text = "Game #" + gameData.gameNumber + ": ";
-
+    
     if (gameData.outcome === 1) {
         if (gameData.saved === 2) {
             text += 'Win - Successful Save Attempt! (' + getUsefulText(gameData.gameMode, 'gamemode') + ')';
@@ -789,7 +789,7 @@ function getGameInfoAsText(gameData) {
     text += "\n" + new Date(parseInt(Date.parse(gameData.played))).toLocaleTimeString() + ' (' + new Date(parseInt(Date.parse(gameData.played))).toDateString() + ')';
     text += "\nYou played for " + secondsToHMS(gameData.timePlayed);
     text += "\n\nCaps: " + gameData.captures + " | Grabs: " + gameData.grabs + " | Drops: " + gameData.drops + " | Popped: " + gameData.pops + " | Tags: " + gameData.tags + " | Returns: " + gameData.returns +
-            "\nHold: " + secondsToHMS(gameData.hold) + " | Prevent: " + secondsToHMS(gameData.prevent) + " | Support: " + gameData.support + " | PUP%: " + (gameData.powerups / gameData.potentialPowerups * 100).toFixed(2) +
+            "\nHold: " + secondsToHMS(gameData.hold) + " | Prevent: " + secondsToHMS(gameData.prevent) + " | Support: " + gameData.support + " | PUP%: " + (gameData.powerups / gameData.potentialPowerups * 100).toFixed(2) + 
             "\nCaps/Grab: " + ((gameData.grabs?gameData.captures:0)/(gameData.grabs?gameData.grabs:1)).toFixed(3) + " | Tags/Pop: " + ((gameData.pops?gameData.tags:0)/(gameData.pops?gameData.pops:1)).toFixed(3);
 
     return text;
@@ -804,8 +804,8 @@ function showData() {
     var Timeline_MaxWidth = 780;
     var Cell_Width = 18; //This value will adjust (smaller) according to MaxGames & Timeline_MaxWidth. Default=18
     var i, j;
-
-    var totals = {'all':     { win:0, loss:0, dc:0, ssa:0, fsa:0, tie:0 },
+    
+    var totals = {'all':     { win:0, loss:0, dc:0, ssa:0, fsa:0, tie:0 }, 
                   'ctf':     { win:0, loss:0, dc:0, ssa:0, fsa:0, tie:0 },
                   'nf':      { win:0, loss:0, dc:0, ssa:0, fsa:0, tie:0 },
                   'pups':    { tags:0, pops:0, grabs:0, drops:0, hold:0, captures:0, prevent:0, returns:0, support:0, powerups:0, timePlayed:0 },
@@ -825,12 +825,12 @@ function showData() {
     $('#R300_PUPs').remove();
 
     var totalPotentialPowerups = 0;
-
+    
     var dayCounts = [];
     var dayCountsKey=0;
     var d1 = '';
     var d2 = '';
-
+    
     $(data).each(function(key, value) {
         d1 = new Date(value.played);
         if (key === 0) { //first game, nothing to compare to yet so just push it
@@ -884,7 +884,7 @@ function showData() {
                 if (totals.streaks.temp_win > totals.streaks.win) totals.streaks.win = totals.streaks.temp_win;
                 totals.streaks.temp_loss = 0;
                 if (totals.streaks.temp_win > 0) totals.streaks.last_win = totals.streaks.temp_win;
-
+                
                 break;
 
             case 2: //loss
@@ -906,7 +906,7 @@ function showData() {
                 if (totals.streaks.temp_loss > totals.streaks.loss) totals.streaks.loss = totals.streaks.temp_loss;
                 totals.streaks.temp_win = 0;
                 if (totals.streaks.temp_loss > 0) totals.streaks.last_loss = totals.streaks.temp_loss;
-
+                
                 break;
 
             case 3: //dc
@@ -964,9 +964,9 @@ function showData() {
                 if (totals.streaks.temp_loss > totals.streaks.loss) totals.streaks.loss = totals.streaks.temp_loss;
                 totals.streaks.temp_win = 0;
                 if (totals.streaks.temp_loss > 0) totals.streaks.last_loss = totals.streaks.temp_loss;
-
+                
                 break;
-
+                
             default: //just in case!
                 title += getGameInfoAsText(value);
                 $('#R300_Timeline').append('<div class="r300_unknown" data-gamenumber="' + (data.length-key) + '" title="' + getGameInfoAsText(value) + '"></div>');
@@ -975,7 +975,7 @@ function showData() {
 
         }
     });
-
+    
     setTimelineCellHeights(Cell_Width);
 
     //Win %...
@@ -1024,12 +1024,12 @@ function showData() {
                 }
             }
             intervalWins.push((int_win / (int_win + int_loss))*100);
-
+            
             if (i % intervalSize === 0) {
                 var IntervalCellWidth = ((Cell_Width+(R300_Selections.ShowR300ShowGap.value ? 1 : 0))*intervalSize-1);
                 var IntervalMarginLeft = 0;
                 if ((i === 0) || (i === data.length-intervalSize)) { //need to adjust for first & last cells...
-                    IntervalCellWidth = ((Cell_Width+(R300_Selections.ShowR300ShowGap.value ? 1 : 0))*intervalSize-2);
+                    IntervalCellWidth = ((Cell_Width+(R300_Selections.ShowR300ShowGap.value ? 1 : 0))*intervalSize-2); 
                     if (i === 0) IntervalMarginLeft = 2;
                 }
                 $('#R300_Intervals').append('<div class="R300_Interval" data-firstgame="'+(data.length-i)+'" style="display:inline-block; cursor:pointer; font-size:11px; color:#777; width:'+IntervalCellWidth+'px; height:10px; ' + (i===0 ? 'border-left:1px solid #777; ' : '') + 'border-right:1px solid #777; margin-left:'+IntervalMarginLeft+'px;" title="Games: ' + (data.length-i-intervalSize+1) + '-' + (data.length-i) + ' (' +intervalSize+')">&nbsp;'+ (intervalWins[i/intervalSize]).toFixed(1) + '%</div>');
@@ -1183,7 +1183,7 @@ function showData() {
 
 }
 
-
+    
 /************************************************************************************/
 // Mini Timeline...
 /************************************************************************************/
@@ -1193,7 +1193,7 @@ function showTrimmedData(start, count) {
     var Cell_Width = 8; //This value will adjust (smaller) according to MaxGames & Timeline_MaxWidth. Default=8
     var ShowGapMarginLeft = 1;
     var i;
-    var totals = {'all':     { win:0, loss:0, dc:0, ssa:0, fsa:0, tie:0 },
+    var totals = {'all':     { win:0, loss:0, dc:0, ssa:0, fsa:0, tie:0 }, 
                   'ctf':     { win:0, loss:0, dc:0, ssa:0, fsa:0, tie:0 },
                   'nf':      { win:0, loss:0, dc:0, ssa:0, fsa:0, tie:0 },
                   'pups':    { tags:0, pops:0, grabs:0, drops:0, hold:0, captures:0, prevent:0, returns:0, support:0, powerups:0, timePlayed:0 },
@@ -1264,7 +1264,7 @@ function showTrimmedData(start, count) {
                     }
                     $('#R300T_Timeline').append('<div class="r300t_win" title="' + getGameInfoAsText(value) + '"></div>');
                 }
-
+                
                 //streak...
                 i=key;
                 while ( (i > 0) && ((data[i-1].outcome === 4)&&(data[i-1].saved === 1)) ) { //unsuccessful saves shouldn't break a streak!
@@ -1274,7 +1274,7 @@ function showTrimmedData(start, count) {
                 if (totals.streaks.temp_win > totals.streaks.win) totals.streaks.win = totals.streaks.temp_win;
                 totals.streaks.temp_loss = 0;
                 if (totals.streaks.temp_win > 0) totals.streaks.last_win = totals.streaks.temp_win;
-
+                
                 break;
 
             case 2: //loss
@@ -1295,7 +1295,7 @@ function showTrimmedData(start, count) {
                 if (totals.streaks.temp_loss > totals.streaks.loss) totals.streaks.loss = totals.streaks.temp_loss;
                 totals.streaks.temp_win = 0;
                 if (totals.streaks.temp_loss > 0) totals.streaks.last_loss = totals.streaks.temp_loss;
-
+                
                 break;
 
             case 3: //dc
@@ -1456,7 +1456,7 @@ tagpro.ready(function() {
     if (PageLoc === 'ingame') { //in a game
         var serverRequests = GM_getValue('serverRequests', []);
 
-        tagpro.socket.on('settings', function(data) {
+        tagpro.socket.on('settings', function(data) { 
             if (tagpro.settings.stats === false) {
                 $('.R300_Stats_Dependent').css('text-decoration', 'line-through').css('text-shadow', 'none');
                 $('.R300_Stats_Dependent').attr('title', 'Stats are OFF');
@@ -1505,7 +1505,7 @@ if (GM_getValue('R300_Selections') === 'undefined') { //first time
 }
 
 //Setup the main div location depending on which page we are on...
-var R300_Div = '<div id="R300" style="position:relative; margin:20px auto 0 auto; padding:10px; width:-webkit-fit-content; color:#fff; text-align:center; text-shadow:2px 1px 2px #000000; border-radius:8px; ' + (R300_Selections.ShowBoxShadowBorder.value ? 'box-shadow:#fff 0px 0px 10px; ' : '') + 'background:rgba(0,0,0,0.1);  white-space:nowrap;">' +
+var R300_Div = '<div id="R300" style="position:relative; margin:20px auto 0 auto; padding:10px; width:-webkit-fit-content; color:#fff; text-align:center; text-shadow:2px 1px 2px #000000; border-radius:8px; ' + (R300_Selections.ShowBoxShadowBorder.value ? 'box-shadow:#fff 0px 0px 10px; ' : '') + 'background:rgba(0,0,0,0.1);  white-space:nowrap;">' + 
     '<div style="display:inline-block">Rolling 300 Timeline</div>' +
     '<div id="R300_Settings_Button" style="display:inline-block; font-size:11px; text-align:center; margin-left:10px; height:13px; width:14px; border:2px solid #3A8CBB; border-radius:8px; cursor:pointer" title="Options">&#8286;</div>' +
     '</div>';
@@ -1513,7 +1513,7 @@ if (PageLoc === 'server') { //Chosen server page
     $('#play').parent().next().after(R300_Div);
     if (R300_Selections.R300MainPages.title.indexOf('Home') >= 0) $('#R300').append('<div id="R300_loading" style="margin:20px; font-size:18px; color:#ff0">Getting Data...<div style="background:#000000 url(\'http://i.imgur.com/WKZPcQA.gif\') no-repeat center; margin-top:10px; opacity:0.7; height:64px; width:100%;"></div></div>');
 } else if (PageLoc === 'profile') {   //Profile page
-    $('h1').parent('a').after(R300_Div);
+    $('h1').parent('a').after(R300_Div); 
 } else if (PageLoc === 'profileNotOurs') { //Someone else's profile page
     $('h1').parent('a').after(R300_Div);
 } else if (PageLoc === 'joining') { //Joining page
@@ -1532,3 +1532,4 @@ if ($('#R300').length) {
 }
 
 loadData();
+

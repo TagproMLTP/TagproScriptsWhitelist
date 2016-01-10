@@ -10,7 +10,7 @@
 // @include       http://tangent.jukejuice.com*
 // @include       http://*.newcompte.fr*
 // @author        ballparts
-// @updateURL     https://github.com/TagproMLTP/TagproScriptsWhitelist/raw/1b5eb646d4a18d65734162e6e9bf4edb060be8e4/Scripts/Modifiable/TagproDragAndDropTextureReplacer-BaseV8.user.js
+// @updateURL     https://gist.github.com/ballparts/eeffb535bb370fadf7ea/raw/TagPro_DragNDropTextureReplacer.user.js
 // @downloadURL   https://gist.github.com/ballparts/eeffb535bb370fadf7ea/raw/TagPro_DragNDropTextureReplacer.user.js
 // ==/UserScript==
 
@@ -35,7 +35,7 @@ if(document.URL.search(/:[0-9]{4}/) > -1) {
         portal = GM_getValue('portal'),
         splats = GM_getValue('splats'),
         gravitywell = GM_getValue('gravitywell');
-
+    
     if(tiles) images.tiles = tiles;
     if(speedpad) images.speedpad = speedpad;
     if(speedpadred) images.speedpadRed = speedpadred;
@@ -46,7 +46,7 @@ if(document.URL.search(/:[0-9]{4}/) > -1) {
     if(images.tiles || images.speedpad || images.speedpadred || images.speedpadblue || images.portal || images.splats || images.gravitywell) {
         tagpro.loadAssets(images);
     }
-
+    
     tagpro.ready(function() {
         if(makeTransparent) {
             var oldCanvas = $(tagpro.renderer.canvas);
@@ -60,7 +60,7 @@ if(document.URL.search(/:[0-9]{4}/) > -1) {
 	        newCanvas.show();
         }
     });
-
+    
     // IF WE ARE NOT IN A GAME
 } else {
 
@@ -70,7 +70,7 @@ if(document.URL.search(/:[0-9]{4}/) > -1) {
         evt.stopPropagation();
         evt.preventDefault();
 
-        files = evt.dataTransfer.files;
+        files = evt.dataTransfer.files; 
 
         for (var i = 0; i < files.length; i++) {
             var thisFile = files[i];
@@ -103,7 +103,7 @@ if(document.URL.search(/:[0-9]{4}/) > -1) {
     function handleDragOver(evt) {
         evt.stopPropagation();
         evt.preventDefault();
-        evt.dataTransfer.dropEffect = 'copy';
+        evt.dataTransfer.dropEffect = 'copy'; 
     }
 
     function determineType(file) {
