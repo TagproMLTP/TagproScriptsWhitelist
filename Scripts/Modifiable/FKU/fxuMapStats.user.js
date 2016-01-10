@@ -5,7 +5,7 @@
 // @include         http://tagpro-*.koalabeast.com*
 // @include         http://*.newcompte.fr*
 // @exclude         http://tagpro-maptest*.koalabeast.com*
-// @updateURL       https://gist.github.com/nabbynz/cf44259aded7b4c32df0/raw/TagPro_MapStats.user.js
+// @updateURL       https://github.com/TagproMLTP/TagproScriptsWhitelist/blob/master/Scripts/Modifiable/FKU/fxuMapStats.user.js
 // @downloadURL     https://gist.github.com/nabbynz/cf44259aded7b4c32df0/raw/TagPro_MapStats.user.js
 // @grant           GM_setValue
 // @grant           GM_getValue
