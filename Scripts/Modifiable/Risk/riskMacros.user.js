@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name          TagPro Chat Macros Userscript
+// @name          Risk Macros Userscript
 // @namespace     http://www.reddit.com/user/contact_lens_linux/
 // @description   Help your team with quick chat macros.
 // @include       http://tagpro-*.koalabeast.com:*
@@ -34,16 +34,19 @@
 
   function actualScript() {
     var macros = {};
-    macros[8] = {"message": "Boosting backwards is risky! Be careful!", "toAll": false}; // backspace
-    macros[48] = {"message": "2 chasers please!", "toAll": false}; // 0
-    macros[49] = {"message": "Get Re-grab! We don't have one yet!", "toAll": false}; // 1
-    macros[50] = {"message": "We have a re-grab", "toAll": false}; // 2
-    macros[51] = {"message": "Some power-ups are spawning, Grab 'em!", "toAll": false}; // 3
-    macros[52] = {"message": "CLEAR base!", "toAll": false}; // 4
-    macros[53] = {"message": "mb", "toAll": false}; // 5
-    macros[57] = {"message": "2 on offense, 2 on Defense please!", "toAll": false}; // 9
-    macros[70] = {"message": "Try not to grab if they're coming in. Just play d and scare 'em off. ", "toAll": false}; // F
-    macros[86] = {"message": "Try not to venture off of re-grab! Your team's trusting you not to.", "toAll": false}; // V
+    macros[52] = {"message": "they have anti", "toAll": false}; // 4
+    macros[65] = {"message": "left", "toAll": false}; // A
+    macros[66] = {"message": "boosting in", "toAll": false}; // B
+    macros[67] = {"message": "return for cap", "toAll": false}; // C
+    macros[68] = {"message": "right", "toAll": false}; // D
+    macros[69] = {"message": "on anti", "toAll": false}; // E
+    macros[70] = {"message": "coming in with the flag", "toAll": false}; // F
+    macros[71] = {"message": "gate?", "toAll": false}; // G
+    macros[80] = {"message": "pups", "toAll": false}; // P
+    macros[82] = {"message": "on re", "toAll": false}; // R
+    macros[83] = {"message": "mid", "toAll": false}; // S
+    macros[87] = {"message": "top", "toAll": false}; // W
+    macros[88] = {"message": "bot", "toAll": false}; // X
 
     // Game bindings overriding adapted from JohnnyPopcorn's NeoMacro https://gist.github.com/JohnnyPopcorn/8150909
     var handlerbtn = $('#macrohandlerbutton');

@@ -3,15 +3,15 @@
 // @namespace     http://www.reddit.com/user/contact_lens_linux/
 // @description   Help your team with quick chat macros.
 // @include       http://tagpro-*.koalabeast.com:*
-// @include       http://tangent.jukejuice.com:*
-// @include       http://maptest.newcompte.fr:*
+// @include       http://tangent.jukejuice.com:* 
+// @include       http://maptest.newcompte.fr:* 
 // @license       GPL version 3 or any later version; http://www.gnu.org/copyleft/gpl.html
 // @author        steppin, Watball
 // @version       0.4
 // ==/UserScript==
- 
+
 (function() {
- 
+
   function contentEval(source) {
     // Check for function input.
     if ('function' == typeof source) {
@@ -20,51 +20,44 @@
       // second empty set calls the surrounded function.
       source = '(' + source + ')();'
     }
- 
+
     // Create a script node holding this  source code.
     var script = document.createElement('script');
     script.setAttribute("type", "application/javascript");
     script.textContent = source;
- 
+
     // Insert the script node into the page, so it will run, and immediately
     // remove it to clean up.
     document.body.appendChild(script);
     document.body.removeChild(script);
   }
- 
+
   function actualScript() {
     var macros = {};
-    macros[49] = {"message": "I'm coming in one!", "toAll": false}; // 1
-    macros[50] = {"message": "I'm coming in two!", "toAll": false}; // 2
-    macros[51] = {"message": "I'm coming in three!", "toAll": false}; // 3
-    macros[52] = {"message": "I'm coming in four!", "toAll": false}; // 4
-    macros[53] = {"message": "I'm coming into base!", "toAll": false}; // 5
-    macros[54] = {"message": "return for qak", "toAll": false}; // 6
-    macros[55] = {"message": "I got regrab!", "toAll": false}; // 7
-    macros[56] = {"message": "CAN YOU GET TOP BUTTON??", "toAll": false}; // 8
-    macros[57] = {"message": "CAN YOU GET MID BUTTON??", "toAll": false}; // 9
-    macros[48] = {"message": "CAN YOU GET BOTTOM BUTTON??", "toAll": false}; // 0
-    macros[191] = {"message": "WHERE IS FC?", "toAll": false}; // /
-    macros[87] = {"message": "I'm coming top!", "toAll": false}; // W
-    macros[65] = {"message": "I'm coming left!", "toAll": false}; // A
-    macros[83] = {"message": "I'm coming bottom!", "toAll": false}; // S
-    macros[68] = {"message": "I'm coming right!", "toAll": false}; // D
-    macros[81] = {"message": "Yes Gem", "toAll": false}; // Q
-    macros[80] = {"message": "purple", "toAll": false}; // P
- 
+    macros[100] = {"message": "The ENEMY flag carrier is LEFT", "toAll": false}; // numpad 4
+    macros[102] = {"message": "The ENEMY flag carrier is RIGHT", "toAll": false}; // numpad 6
+    macros[98] = {"message": "The ENEMY flag carrier is BOTTOM", "toAll": false}; // numpad 2
+    macros[104] = {"message": "The ENEMY flag carrier is TOP", "toAll": false}; // numpad 8
+    macros[103] = {"message": "mb", "toAll": false}; // numpad 7
+    macros[105] = {"message": "Please chase the enemy flag carrier!", "toAll": false}; // numpad 9
+    macros[101] = {"message": "The ENEMY flag carrier is MIDDLE", "toAll": false}; // numpad 5
+    macros[97] = {"message": "We need regrab!", "toAll": false}; // numpad 1
+    macros[99] = {"message": "I've got regrab", "toAll": false}; // numpad 3
+    macros[96] = {"message": "Powerups are spawning soon/now", "toAll": false}; // numpad 0
+
     // Game bindings overriding adapted from JohnnyPopcorn's NeoMacro https://gist.github.com/JohnnyPopcorn/8150909
     var handlerbtn = $('#macrohandlerbutton');
     handlerbtn.keydown(keydownHandler)
               .keyup(keyupHandler);
     handlerbtn.focus();
- 
+
     $(document).keydown(documentKeydown);
     function documentKeydown(event) {
       if (!tagpro.disableControls) {
         handlerbtn.focus(); // The handler button should be always focused
       }
     }
- 
+
     function keydownHandler(event) {
       var code = event.keyCode || event.which;
       if (code in macros && !tagpro.disableControls) {
@@ -74,14 +67,14 @@
         //console.log(macros[code]);
       }
     }
- 
+
     function keyupHandler(event) {
       if (event.keyCode in macros && !tagpro.disableControls) {
         event.preventDefault();
         event.stopPropagation();
       }
     }
- 
+
     var lastMessage = 0;
     var active = false;
     function chat(chatMessage) {
@@ -97,7 +90,7 @@
       }
     }
   }
- 
+
   // This dummy input will handle macro keypresses
   var btn = document.createElement("input");
   btn.style.opacity = 0;
@@ -106,6 +99,6 @@
   btn.style.left = "-100px";
   btn.id = "macrohandlerbutton";
   document.body.appendChild(btn);
- 
+
   contentEval(actualScript);
 })();
