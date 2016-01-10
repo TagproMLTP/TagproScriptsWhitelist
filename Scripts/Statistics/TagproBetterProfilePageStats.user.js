@@ -4,7 +4,7 @@
 //                  • Power-ups stats can be shown as "per game" (using the checkbox)
 // @version    	    0.1.2
 // @include         http://tagpro-*.koalabeast.com/profile/*
-// @updateURL       https://gist.github.com/nabbynz/51050e6f43791cc3c5eb/raw/TagPro_BetterProfilePageStats.user.js
+// @updateURL       https://github.com/TagproMLTP/TagproScriptsWhitelist/raw/1b5eb646d4a18d65734162e6e9bf4edb060be8e4/Scripts/Statistics/TagproBetterProfilePageStats.user.js
 // @downloadURL     https://gist.github.com/nabbynz/51050e6f43791cc3c5eb/raw/TagPro_BetterProfilePageStats.user.js
 // @license         none
 // @author          nabby
@@ -12,7 +12,7 @@
 
 String.prototype.toSeconds = function () {
     var a = this.split(':');
-    return ((+a[0]) * 60 * 60 + (+a[1]) * 60 + (+a[2])).toString(); 
+    return ((+a[0]) * 60 * 60 + (+a[1]) * 60 + (+a[2])).toString();
 };
 
 String.prototype.toHHMMSS = function () {
@@ -31,7 +31,7 @@ String.prototype.toHHMMSS = function () {
 
 $(document).ready(function() {
     $('table').eq(0).before('<div style="float:right"><label><input type="checkbox" id="showPerGameStats" ' + (localStorage.getItem('PerGameStats') === 'true' ? 'checked' : '') + '>Show "Per Game" Stats</label></div>');
-    
+
     var games = 0,
         row = 0,
         col = 0,
@@ -77,7 +77,7 @@ $(document).ready(function() {
         }
     }
 
-    
+
     //=================================================================
     //Daily/Weekly/Monthly Stats...
     //=================================================================
@@ -88,7 +88,7 @@ $(document).ready(function() {
         $('#StatsDWM tr:eq('+row+') > td:eq(9)').text( (WTLD > 0 ? (parseInt($('#StatsDWM tr:eq('+row+') > td:eq(2)').text()) / WTLD * 100).toFixed(2) : '0.00') );
     }
 
-    
+
     //=================================================================
     //Daily/Weekly/Monthly PowerUp Table...
     //=================================================================
@@ -128,7 +128,7 @@ $(document).ready(function() {
         $('#PUP300 span.normal').show(0);
         $('#PUP300 span.pergame').hide(0);
     }
-    
+
     //attach the event...
     $('#showPerGameStats').on('click', function() {
         if ($(this).is(':checked')) {

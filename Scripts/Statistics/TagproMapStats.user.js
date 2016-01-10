@@ -5,7 +5,7 @@
 // @include         http://tagpro-*.koalabeast.com*
 // @include         http://*.newcompte.fr*
 // @exclude         http://tagpro-maptest*.koalabeast.com*
-// @updateURL       https://gist.github.com/nabbynz/cf44259aded7b4c32df0/raw/TagPro_MapStats.user.js
+// @updateURL       https://github.com/TagproMLTP/TagproScriptsWhitelist/raw/1b5eb646d4a18d65734162e6e9bf4edb060be8e4/Scripts/Statistics/TagproMapStats.user.js
 // @downloadURL     https://gist.github.com/nabbynz/cf44259aded7b4c32df0/raw/TagPro_MapStats.user.js
 // @grant           GM_setValue
 // @grant           GM_getValue
@@ -38,7 +38,7 @@ var options = {
     'preventhour':   { display:'Prevent/Hour',                           value:false,            },
     'showtotals':    { display:'Show Totals',                            value:true,             },
     'showheader':    { display:'Show Header (in game)',                  value:true,             },
-    'hidelowlymaps': { display:'Hide Lowly Played Maps?',                value:true,             }, 
+    'hidelowlymaps': { display:'Hide Lowly Played Maps?',                value:true,             },
     'highlightmaxs': { display:'Highlight Max Values?',                  value:true,             },
     'showborder':    { display:'Show Border?',                           value:true,             },
     'widescreen':    { display:'Attempt Widescreen Position',            value:false,            },
@@ -54,7 +54,7 @@ function WhichPageAreWeOn(){
         return('joining');
     } else if ($('#play').length) { //Chosen server homepage
         return('server');
-    } else if (document.URL.indexOf('/profile/') > 0) { 
+    } else if (document.URL.indexOf('/profile/') > 0) {
         if ($('#showSettings').length) {
             return('profile'); //Profile page and logged in
         } else {
@@ -80,8 +80,8 @@ function comparer(index) {
         return $.isNumeric(valA) && $.isNumeric(valB) ? valB - valA : valA.localeCompare(valB);
     };
 }
-function getCellValue(row, index){ 
-    return $(row).children('td').eq(index).data('sortby'); 
+function getCellValue(row, index){
+    return $(row).children('td').eq(index).data('sortby');
 }
 
 function saveMapData(mapName, result, pups, mapAuthor) {
@@ -274,50 +274,50 @@ tagpro.ready(function() {
 
             //---------------------------------------------
             //Totals Row (x2)...
-            $('#ms_normaldata').append('<tr id="mapstats_totals_normal" class="showtotals">' + 
+            $('#ms_normaldata').append('<tr id="mapstats_totals_normal" class="showtotals">' +
                                        '<td>'                          + mapFreqSorted.length + '</td>' +
-                                       '<td>W:' + totals.winCount + ' | L:' + totals.lossCount + ' | T:' + totals.tieCount + ' | S:' + totals.saveCount + ' | U:' + totals.usaCount + '</td>' + 
+                                       '<td>W:' + totals.winCount + ' | L:' + totals.lossCount + ' | T:' + totals.tieCount + ' | S:' + totals.saveCount + ' | U:' + totals.usaCount + '</td>' +
                                        '<td>'                          + totals.playedCount + '</td>' +
-                                       '<td class="timePlayed">'       + secondsToHMS(totals.timePlayed) + '</td>' + 
-                                       '<td class="winpercent">'       + winpercentage.toFixed(2) + '</td>' + 
-                                       '<td class="captures">'         + totals.captures + '</td>' + 
-                                       '<td class="grabs">'            + totals.grabs + '</td>' + 
-                                       '<td class="hold">'             + secondsToHMS(totals.hold) + '</td>' + 
-                                       '<td class="drops">'            + totals.drops + '</td>' + 
-                                       '<td class="tags">'             + totals.tags + '</td>' + 
-                                       '<td class="pops">'             + totals.pops + '</td>' + 
-                                       '<td class="returns">'          + totals.returns + '</td>' + 
-                                       '<td class="prevent">'          + secondsToHMS(totals.prevent) + '</td>' + 
-                                       '<td class="support">'          + totals.support + '</td>' + 
-                                       '<td class="powerups">'         + totals.powerups + '</td>' + 
-                                       '<td class="capsgrab">'         + (totals.captures/totals.grabs).toFixed(3) + '</td>' + 
-                                       '<td class="capshour">'         + (totals.captures/(totals.timePlayed/3600)).toFixed(1) + '</td>' + 
-                                       '<td class="tagspop">'          + (totals.tags/totals.pops).toFixed(3) + '</td>' + 
-                                       '<td class="returnshour">'      + (totals.returns/(totals.timePlayed/3600)).toFixed(1) + '</td>' + 
-                                       '<td class="preventhour">'      + (totals.prevent/(totals.timePlayed/3600)).toFixed(1) + '</td>' + 
+                                       '<td class="timePlayed">'       + secondsToHMS(totals.timePlayed) + '</td>' +
+                                       '<td class="winpercent">'       + winpercentage.toFixed(2) + '</td>' +
+                                       '<td class="captures">'         + totals.captures + '</td>' +
+                                       '<td class="grabs">'            + totals.grabs + '</td>' +
+                                       '<td class="hold">'             + secondsToHMS(totals.hold) + '</td>' +
+                                       '<td class="drops">'            + totals.drops + '</td>' +
+                                       '<td class="tags">'             + totals.tags + '</td>' +
+                                       '<td class="pops">'             + totals.pops + '</td>' +
+                                       '<td class="returns">'          + totals.returns + '</td>' +
+                                       '<td class="prevent">'          + secondsToHMS(totals.prevent) + '</td>' +
+                                       '<td class="support">'          + totals.support + '</td>' +
+                                       '<td class="powerups">'         + totals.powerups + '</td>' +
+                                       '<td class="capsgrab">'         + (totals.captures/totals.grabs).toFixed(3) + '</td>' +
+                                       '<td class="capshour">'         + (totals.captures/(totals.timePlayed/3600)).toFixed(1) + '</td>' +
+                                       '<td class="tagspop">'          + (totals.tags/totals.pops).toFixed(3) + '</td>' +
+                                       '<td class="returnshour">'      + (totals.returns/(totals.timePlayed/3600)).toFixed(1) + '</td>' +
+                                       '<td class="preventhour">'      + (totals.prevent/(totals.timePlayed/3600)).toFixed(1) + '</td>' +
                                        '</tr>');
 
-            $('#ms_pergamedata').append('<tr id="mapstats_totals_pergame" class="showtotals">' + 
+            $('#ms_pergamedata').append('<tr id="mapstats_totals_pergame" class="showtotals">' +
                                         '<td>' + mapFreqSorted.length   + '</td>' +
-                                        '<td>W:' + totals.winCount + ' | L:' + totals.lossCount + ' | T:' + totals.tieCount + ' | S:' + totals.saveCount + ' | U:' + totals.usaCount + '</td>' + 
+                                        '<td>W:' + totals.winCount + ' | L:' + totals.lossCount + ' | T:' + totals.tieCount + ' | S:' + totals.saveCount + ' | U:' + totals.usaCount + '</td>' +
                                         '<td>'                          + totals.playedCount + '</td>' +
-                                        '<td class="timePlayed">'       + secondsToHMS(totals.timePlayed / totals.playedCount) + '</td>' + 
-                                        '<td class="winpercent">'       + winpercentage.toFixed(2) + '</td>' + 
-                                        '<td class="captures">'         + (totals.captures / totals.playedCount).toFixed(2) + '</td>' + 
-                                        '<td class="grabs">'            + (totals.grabs / totals.playedCount).toFixed(2) + '</td>' + 
-                                        '<td class="hold">'             + secondsToHMS(totals.hold / totals.playedCount) + '</td>' +  
-                                        '<td class="drops">'            + (totals.drops / totals.playedCount).toFixed(2) + '</td>' + 
-                                        '<td class="tags">'             + (totals.tags / totals.playedCount).toFixed(2) + '</td>' + 
-                                        '<td class="pops">'             + (totals.pops / totals.playedCount).toFixed(2) + '</td>' + 
-                                        '<td class="returns">'          + (totals.returns / totals.playedCount).toFixed(2) + '</td>' + 
-                                        '<td class="prevent">'          + secondsToHMS(totals.prevent / totals.playedCount) + '</td>' + 
-                                        '<td class="support">'          + (totals.support / totals.playedCount).toFixed(2) + '</td>' + 
-                                        '<td class="powerups">'         + (totals.powerups / totals.playedCount).toFixed(2) + '</td>' + 
-                                        '<td class="capsgrab">'         + (totals.captures/totals.grabs).toFixed(3) + '</td>' + 
-                                        '<td class="capshour">'         + (totals.captures/(totals.timePlayed/3600)).toFixed(1) + '</td>' + 
-                                        '<td class="tagspop"> '         + (totals.tags/totals.pops).toFixed(3) + '</td>' + 
-                                        '<td class="returnshour">'      + (totals.returns/(totals.timePlayed/3600)).toFixed(1) + '</td>' + 
-                                        '<td class="preventhour">'      + (totals.prevent/(totals.timePlayed/3600)).toFixed(1) + '</td>' + 
+                                        '<td class="timePlayed">'       + secondsToHMS(totals.timePlayed / totals.playedCount) + '</td>' +
+                                        '<td class="winpercent">'       + winpercentage.toFixed(2) + '</td>' +
+                                        '<td class="captures">'         + (totals.captures / totals.playedCount).toFixed(2) + '</td>' +
+                                        '<td class="grabs">'            + (totals.grabs / totals.playedCount).toFixed(2) + '</td>' +
+                                        '<td class="hold">'             + secondsToHMS(totals.hold / totals.playedCount) + '</td>' +
+                                        '<td class="drops">'            + (totals.drops / totals.playedCount).toFixed(2) + '</td>' +
+                                        '<td class="tags">'             + (totals.tags / totals.playedCount).toFixed(2) + '</td>' +
+                                        '<td class="pops">'             + (totals.pops / totals.playedCount).toFixed(2) + '</td>' +
+                                        '<td class="returns">'          + (totals.returns / totals.playedCount).toFixed(2) + '</td>' +
+                                        '<td class="prevent">'          + secondsToHMS(totals.prevent / totals.playedCount) + '</td>' +
+                                        '<td class="support">'          + (totals.support / totals.playedCount).toFixed(2) + '</td>' +
+                                        '<td class="powerups">'         + (totals.powerups / totals.playedCount).toFixed(2) + '</td>' +
+                                        '<td class="capsgrab">'         + (totals.captures/totals.grabs).toFixed(3) + '</td>' +
+                                        '<td class="capshour">'         + (totals.captures/(totals.timePlayed/3600)).toFixed(1) + '</td>' +
+                                        '<td class="tagspop"> '         + (totals.tags/totals.pops).toFixed(3) + '</td>' +
+                                        '<td class="returnshour">'      + (totals.returns/(totals.timePlayed/3600)).toFixed(1) + '</td>' +
+                                        '<td class="preventhour">'      + (totals.prevent/(totals.timePlayed/3600)).toFixed(1) + '</td>' +
                                         '</tr>');
             GM_addStyle("#mapstats_totals_normal, #mapstats_totals_pergame td { text-align:center; background:#aaa; color:#000; cursor:pointer; }");
             GM_addStyle(".ms_datarow { line-height:0 }");
@@ -332,11 +332,11 @@ tagpro.ready(function() {
                 }
 
                 if (value.playedCount === value.winCount + value.lossCount + value.saveCount + value.usaCount + value.tieCount) {
-                    $('#ms_normaldata').append('<tr class="ms_datarow'+(value.playedCount < MapStats_Options.hidelowlymaps.value ? ' MapStats_Lowly' : '')+'">' + 
-                                               '<td data-sortby="m'+trimmedMapName+'"' + (mapPreviewID ? 'data-previewid="'+mapPreviewID+'" data-mapauthor="'+value.mapAuthor+'" class="mapPreview" ' : '') + 'style="text-align:right; ' + (!mapPreviewID ? 'text-decoration:underline dotted;" title="No Preview Available"' : '"') + '>' + value.mapName + '</td>' + 
-                                               '<td data-sortby="'+(value.winCount+value.saveCount)+'" style="text-align:left"><div id="map1_'+trimmedMapName+'" style="width:'+(value.playedCount/highestPlayed*100).toFixed(2)+'%; height:8px; overflow:hidden; white-space:nowrap"></div></td>' + 
-                                               
-                                               '<td data-sortby="'+value.playedCount+'"                                                        class="playedCount"             title="'+value.mapName+' played '+value.playedCount+' times">'       + (value.playedCount/totals.playedCount*100).toFixed(2) + '% (' + value.playedCount + ')</td>' + 
+                    $('#ms_normaldata').append('<tr class="ms_datarow'+(value.playedCount < MapStats_Options.hidelowlymaps.value ? ' MapStats_Lowly' : '')+'">' +
+                                               '<td data-sortby="m'+trimmedMapName+'"' + (mapPreviewID ? 'data-previewid="'+mapPreviewID+'" data-mapauthor="'+value.mapAuthor+'" class="mapPreview" ' : '') + 'style="text-align:right; ' + (!mapPreviewID ? 'text-decoration:underline dotted;" title="No Preview Available"' : '"') + '>' + value.mapName + '</td>' +
+                                               '<td data-sortby="'+(value.winCount+value.saveCount)+'" style="text-align:left"><div id="map1_'+trimmedMapName+'" style="width:'+(value.playedCount/highestPlayed*100).toFixed(2)+'%; height:8px; overflow:hidden; white-space:nowrap"></div></td>' +
+
+                                               '<td data-sortby="'+value.playedCount+'"                                                        class="playedCount"             title="'+value.mapName+' played '+value.playedCount+' times">'       + (value.playedCount/totals.playedCount*100).toFixed(2) + '% (' + value.playedCount + ')</td>' +
                                                '<td data-sortby="'+value.timePlayed+'"                                                         class="timePlayed"              title="Time Played on '+value.mapName+'">'                           + secondsToHMS(value.timePlayed) + '</td>' +
                                                '<td data-sortby="'+(value.winCount+value.saveCount)/(value.playedCount-value.usaCount || 1)+'" class="winpercent"              title="Win Percentage on '+value.mapName+'">'                        + ((value.winCount+value.saveCount)/(value.playedCount-value.usaCount || 1)*100).toFixed(0) + '%</td>' +
                                                '<td data-sortby="'+value.captures+'"                                                           class="captures"                title="Caps on '+value.mapName+'">'                                  + value.captures + '</td>' +
@@ -361,11 +361,11 @@ tagpro.ready(function() {
                     if (value.tieCount) $('#map1_'+trimmedMapName).append('<span style="display:inline-block; width:'+(value.tieCount/value.playedCount*100).toFixed(2)+'%; height:10px; white-space:nowrap; background:#ff9900" title="Ties: '+value.tieCount+ '"></span>');
                     if (value.usaCount) $('#map1_'+trimmedMapName).append('<span style="display:inline-block; width:'+(value.usaCount/value.playedCount*100).toFixed(2)+'%; height:10px; white-space:nowrap; background:#157798" title="Unsuccessful Save Attempts: '+value.usaCount+ '"></span>');
 
-                    $('#ms_pergamedata').append('<tr class="ms_datarow'+(value.playedCount < MapStats_Options.hidelowlymaps.value ? ' MapStats_Lowly' : '')+'">' + 
-                                                '<td data-sortby="m'+trimmedMapName+'"' + (mapPreviewID ? 'data-previewid="'+mapPreviewID+'" data-mapauthor="'+value.mapAuthor+'" class="mapPreview" ' : '') + 'style="text-align:right; ' + (!mapPreviewID ? 'text-decoration:underline dotted;" title="No Preview Available"' : '"') + '>' + value.mapName + '</td>' + 
-                                                '<td data-sortby="'+(value.winCount+value.saveCount)+'" style="text-align:left"><div id="map2_'+trimmedMapName+'" style="width:'+(value.playedCount/highestPlayed*100).toFixed(2)+'%; height:8px; overflow:hidden; white-space:nowrap"></div></td>' + 
-                                                
-                                                '<td data-sortby="'+value.playedCount+'"                                                        class="playedCount"            title="'+value.mapName+' played '+value.playedCount+' times">'       + (value.playedCount/totals.playedCount*100).toFixed(2) + '% (' + value.playedCount + ')</td>' + 
+                    $('#ms_pergamedata').append('<tr class="ms_datarow'+(value.playedCount < MapStats_Options.hidelowlymaps.value ? ' MapStats_Lowly' : '')+'">' +
+                                                '<td data-sortby="m'+trimmedMapName+'"' + (mapPreviewID ? 'data-previewid="'+mapPreviewID+'" data-mapauthor="'+value.mapAuthor+'" class="mapPreview" ' : '') + 'style="text-align:right; ' + (!mapPreviewID ? 'text-decoration:underline dotted;" title="No Preview Available"' : '"') + '>' + value.mapName + '</td>' +
+                                                '<td data-sortby="'+(value.winCount+value.saveCount)+'" style="text-align:left"><div id="map2_'+trimmedMapName+'" style="width:'+(value.playedCount/highestPlayed*100).toFixed(2)+'%; height:8px; overflow:hidden; white-space:nowrap"></div></td>' +
+
+                                                '<td data-sortby="'+value.playedCount+'"                                                        class="playedCount"            title="'+value.mapName+' played '+value.playedCount+' times">'       + (value.playedCount/totals.playedCount*100).toFixed(2) + '% (' + value.playedCount + ')</td>' +
                                                 '<td data-sortby="'+(value.timePlayed/value.playedCount)+'"                                     class="timePlayed"             title="Time Played on '+value.mapName+'">'                           + secondsToHMS(value.timePlayed/value.playedCount) + '</td>' +
                                                 '<td data-sortby="'+(value.winCount+value.saveCount)/(value.playedCount-value.usaCount || 1)+'" class="winpercent"             title="Win Percentage on '+value.mapName+'">'                        + ((value.winCount+value.saveCount)/(value.playedCount-value.usaCount || 1)*100).toFixed(0) + '%</td>' +
                                                 '<td data-sortby="'+(value.captures/value.playedCount)+'"                                       class="captures"               title="Caps on '+value.mapName+'">'                                  + (value.captures/value.playedCount).toFixed(2) + '</td>' +
@@ -422,9 +422,9 @@ tagpro.ready(function() {
                     }
                 }
             }
-            
+
             GM_addStyle(".MF_Max { color:#ca0 }");
-            
+
             //---------------------------------------------
             //Build the menu and perform some saved options...
             $.each(MapStats_Options, function(key, value) {
@@ -434,7 +434,7 @@ tagpro.ready(function() {
                         $('.MapStats_Lowly').hide(0);
                         $('#mapstats_totals_normal').find('td').eq(0).text(($('.MapStats_Lowly').length / 2) + ' ('+mapFreqSorted.length+')');
                         $('#mapstats_totals_pergame').find('td').eq(0).text(($('.MapStats_Lowly').length / 2) + ' ('+mapFreqSorted.length+')');
-                    }                
+                    }
                 } else {
                     $('#MapStats_Options_Menu').append('<li style="list-style:none"><label><input type="checkbox" id="' + key + '" ' + (value.value === true ? 'checked' : '') + '>' + value.display + '</label></li>');
                     if (key === 'widescreen') {
@@ -493,7 +493,7 @@ tagpro.ready(function() {
                         }
                     });
                 }
-                
+
                 if (MapStats_Options.highlightmaxs.value) {
                     highlightMaximums();
                 }
@@ -528,7 +528,7 @@ tagpro.ready(function() {
             $('#MapStats_Options_Button').on('click', function() {
                 $('#MapStats_Options_Menu').slideToggle(400);
             });
-            $("#MapStats_Options_Menu").mouseleave(function() { 
+            $("#MapStats_Options_Menu").mouseleave(function() {
                 $('#MapStats_Options_Menu').fadeOut(100);
             });
 
@@ -641,7 +641,7 @@ tagpro.ready(function() {
                 $('#ms_pergame_label').fadeToggle(400);
             });
 
-            
+
             //---------------------------------------------
             //set some options...
             if (GM_getValue('MapStats_Pause') === 'paused') {
@@ -706,7 +706,7 @@ tagpro.ready(function() {
                 }
             }
         });
- 
+
         tagpro.socket.on('map', function(data) {
             mapName = data.info.name;
             mapAuthor = data.info.author;
@@ -730,14 +730,14 @@ tagpro.ready(function() {
                 } else {
                     $('body').prepend('<div id="MapStats_Header" style="margin:1px auto; font-size:12px; font-weight:bold; font-style:italic; color:#fff; text-align:center; text-shadow:1px 2px 1px #222; clear:both"></div>');
                 }
-                
+
                 if (mapFreq.hasOwnProperty(mapName)) {
                     var winpercentage = (mapFreq[mapName].winCount+mapFreq[mapName].saveCount)/(mapFreq[mapName].playedCount-mapFreq[mapName].usaCount)*100;
                     var totalPlayedCount = 0;
                     $.each(mapFreq, function(key, value) {
                         totalPlayedCount += value.playedCount;
                     });
-                    $('#MapStats_Header').append('<span style="color:#bbb">Win % on ' + mapName + ': ' + winpercentage.toFixed(2) + '%</span> | ' + 
+                    $('#MapStats_Header').append('<span style="color:#bbb">Win % on ' + mapName + ': ' + winpercentage.toFixed(2) + '%</span> | ' +
                                                  '<span style="color:#999">Average Game Lasts: ' + secondsToHMS(mapFreq[mapName].timePlayed/mapFreq[mapName].playedCount) + '</span> | ' +
                                                  '<span style="color:#bbb">Played %: ' + (mapFreq[mapName].playedCount / totalPlayedCount * 100).toFixed(2) + '% (' + mapFreq[mapName].playedCount + ' times)</span>' +
                                                  '<span id="MapStats_Pause" style="display:inline-block; margin-left:5px; font-size:9px; font-style:normal; text-align:center; height:9px; min-width:11px; border:2px solid #ed590c; border-radius:7px; cursor:pointer"></span>');
@@ -755,7 +755,7 @@ tagpro.ready(function() {
                     $('#MapStats_Pause').html('ll');
                     $('#MapStats_Pause').attr('title', 'MapStats is Currently Saving - Press to Pause...');
                 }
-                
+
                 $('#MapStats_Pause').on('click', function() {
                     if ((GM_getValue('MapStats_Pause') === 'paused') || groupPause) {
                         GM_setValue('MapStats_Pause', '');
@@ -771,7 +771,7 @@ tagpro.ready(function() {
             }
         });
 
-        tagpro.socket.on('chat', function(data) { 
+        tagpro.socket.on('chat', function(data) {
             if (data.from === null) { //system message
                 if (data.message.indexOf('This is a save attempt!') >= 0) {
                     saveAttempt = true;
@@ -781,7 +781,7 @@ tagpro.ready(function() {
 
         tagpro.socket.on('end', function(data) {
             $('#MapStats_Pause').hide(0);
-            
+
             if ((!tagpro.spectator) && (GM_getValue('MapStats_Pause') !== 'paused') && !groupPause) {
                 var pups = {};
                 var endTime = (new Date).getTime();
@@ -803,7 +803,7 @@ tagpro.ready(function() {
                     } else { //probably an event, which we won't record...
                         return false;
                     }
-                    
+
                     pups.tags = tagpro.players[tagpro.playerId]["s-tags"];
                     pups.pops = tagpro.players[tagpro.playerId]["s-pops"];
                     pups.grabs = tagpro.players[tagpro.playerId]["s-grabs"];
@@ -821,5 +821,5 @@ tagpro.ready(function() {
             }
         });
     }
-    
+
 }); //tagpro.ready
