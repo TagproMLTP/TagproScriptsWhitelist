@@ -9,7 +9,7 @@
 // @include       http://tagpro-*.koalabeast.com*
 // @include       http://tangent.jukejuice.com*
 // @include       http://*.newcompte.fr*
-// @updateURL     https://gist.github.com/nabbynz/474bfbfb841d9a328418/raw/TagPro_Texture_Pack_&_Background_Replacer_&_Spin.user.js
+// @updateURL     https://github.com/TagproMLTP/TagproScriptsWhitelist/blob/master/Scripts/Modifiable/ShaszamDragAndDrop.user.js
 // @downloadURL   https://gist.github.com/nabbynz/474bfbfb841d9a328418/raw/TagPro_Texture_Pack_&_Background_Replacer_&_Spin.user.js
 // @author        Dr.Holmes & ballparts & nabby
 // ==/UserScript==
