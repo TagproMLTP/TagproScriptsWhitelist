@@ -25,7 +25,7 @@
     FINALURL  = 'http://serene-headland-9709.herokuapp.com/api/games';
  
     // User ID for identification purposes
-    KEY = ""; // YOU WILL PUT YOUR KEY HERE, BETWEEN THE QUOTES
+    KEY = ''; // YOU WILL PUT YOUR KEY HERE, BETWEEN THE QUOTES
     if ( new Date().getDay() == 1 && new Date().getHours() >= 17 ) { // if Monday / minors
        KEY += "_m";
     }
