@@ -14,7 +14,7 @@
 // @include       http://tagpro-*.koalabeast.com*
 // @include       http://tangent.jukejuice.com*
 // @include       http://*.newcompte.fr*
-// @updateURL     https://gist.github.com/nabbynz/474bfbfb841d9a328418/raw/TagPro_Texture_Pack_Manager.user.js
+// @updateURL     https://github.com/TagproMLTP/TagproScriptsWhitelist/blob/master/Scripts/Modifiable/Sundown/sundownTexturePackManager.user.js
 // @downloadURL   https://gist.github.com/nabbynz/474bfbfb841d9a328418/raw/TagPro_Texture_Pack_Manager.user.js
 // @run-at        document-end
 // ==/UserScript==
