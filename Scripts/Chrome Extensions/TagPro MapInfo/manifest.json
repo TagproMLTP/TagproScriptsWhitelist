@@ -1,0 +1,56 @@
+{
+"update_url": "https://clients2.google.com/service/update2/crx",
+
+  "name": "TagPro MapInfo",
+  "version": "0.0.4",
+  "manifest_version": 2,
+  "description": "Calculate various metrics of TagPro maps.",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "default_locale": "en",
+  "options_page": "src/page_action/page_action.html",
+  "page_action": {
+    "default_icon": "icons/icon19.png",
+    "default_title": "Make Your Own Metrics"
+  },
+  "permissions": [
+    "storage",
+    "unlimitedStorage",
+    "activeTab",
+    "notifications"
+  ],
+  "background": {
+    "scripts": [
+      "src/bg/background.js"
+      ]
+    },
+  "content_scripts": [
+    {
+      "matches": [
+        "http://unfortunate-maps.jukejuice.com/*",
+        "http://maps.jukejuice.com/*",
+        "http://*.koalabeast.com/*",
+        "http://*.newcompte.fr/*",
+        "http://tangent.jukejuice.com/*"
+      ],
+      "js": [
+        "lib/jquery.min.js",
+        "lib/jquery-ui.min.js",
+        "lib/FileSaver.min.js",
+        "lib/astar.js",
+        "src/inject/inject.js"
+      ]
+    }
+  ],
+  "web_accessible_resources": [
+    "src/inject/in-game.js",
+    "lib/jquery.min.js",
+    "lib/jquery-ui.min.js",
+    "lib/FileSaver.min.js",
+    "lib/astar.js",
+    "jquery.classywiggle.min.js"
+  ]
+}

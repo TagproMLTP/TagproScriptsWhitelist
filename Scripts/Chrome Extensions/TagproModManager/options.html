@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- CSS -->
+		<style>
+			body>.main-container {max-width:800px;margin:50px auto}
+      header {text-align: center;margin:0 auto 30px auto;font-size:48px}
+      label {
+      	width: 90px;
+      	margin-top: 2px;
+      	float: left;
+      	text-align: right;
+      	margin-right: 0.5em;
+     	}
+     	input[type="button"] {
+     		margin-top: 5px !important;
+				margin-left: 98px !important;
+     	}
+		</style>
+		<link rel="stylesheet" type="text/css" href="chrome_shared.css">
+
+		<script src="jquery.js"></script>
+	</head>
+
+	<body>
+		<div class="main-container">
+			<header>TagPro Mod Manager</header>
+			<h1>Test a mod</h1>
+			<hr>
+			<p>Making your own mod? Use this to test it out! <br>
+			Only add the files that your mod changes, the rest will stay vanilla.</p>
+
+			<div>
+				<label>Tiles.png:</label>
+				<input type="file" class="upload-file" id="tiles" />
+			</div>
+			<div>
+				<label>Speedpad.png:</label>
+				<input type="file" class="upload-file" id="speedpad" />
+			</div>
+			<div>
+				<label>SpeedpadRed.png:</label>
+				<input type="file" class="upload-file" id="speedpadred" />
+			</div>
+			<div>
+				<label>SpeedpadBlue.png:</label>
+				<input type="file" class="upload-file" id="speedpadblue" />
+			</div>
+			<div>
+				<label>Splats.png:</label>
+				<input type="file" class="upload-file" id="splats" />
+			</div>
+			<div>
+				<label>Flair.png:</label>
+				<input type="file" class="upload-file" id="flair" />
+			</div>
+			<div>
+				<label>Portal.png:</label>
+				<input type="file" class="upload-file" id="portal" />
+			</div>
+
+			<input type="button" id="submit" value="Submit" />
+		</div>
+
+		<script src="js/options.js"></script>
+	</body>
+</html>

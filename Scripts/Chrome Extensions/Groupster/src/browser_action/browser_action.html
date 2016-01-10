@@ -1,0 +1,78 @@
+<!doctype html>
+<style type="text/css">
+	body {
+		width: 200px;
+		font-family: monospace;
+		text-align: center;
+		background: black;
+	}
+	.serverList {
+		cursor: pointer;
+		font-size: 15px;
+		padding: 5px;
+		background: #ACE600;
+		border: solid 3px #608100;
+		width: 80%;
+		margin: 0 auto;
+		margin-bottom: 10px;
+		margin-top: 10px;
+	}
+	#private, #joiner {
+		font-size: 10px;
+		color: black;
+	}
+	button {
+		cursor: pointer;
+		font-family: monospace;
+		padding: 5px;
+	}
+	.on {
+		background: white;
+		border: 3px solid #608100;
+	}
+	.off {
+		background: #999999;
+	}
+	#settings p {
+		width: 50%;
+		margin: 0 10;
+		display: inline-block;
+	}
+	#settings button {
+		margin-left: 10px;
+	}
+	.preferred {
+		font-size: 11px;
+		color: white;
+	}
+	#preferred {
+		color: white;
+	}
+
+</style>
+
+<script src="/js/jquery/jquery.js"></script>
+<script src="/js/angular/angular.js"></script>
+<script src="browser_action.js"></script>
+
+<body ng-app="groupster">
+	<a href="#"> </a>
+	<div ng-controller="HomeCtrl">
+		<div id="main" ng-show="showMain">
+			<button id="private" ng-click="toggleGroupOn()" ng-class="{ 'on' : groupOn, 'off' : !groupOn }"> private group </button>
+			<button id="joiner" ng-click="toggleGroupOn()" ng-class="{ 'off' : groupOn, 'on' : !groupOn }"> joiner </button>
+			<p class="serverList" ng-repeat="server in servers" ng-click="handleClick(server)">{{server}}</p>
+			<button ng-click="toggleView()">settings</button>
+		</div>
+		<div id="settings" ng-hide="showMain">
+			<p id="preferred"> Your preferred servers: </p>
+			<p class="preferred" ng-repeat="server in servers">{{server}}</span>
+			<div ng-repeat="server in allServers">
+				<p class="serverList">{{server}}</p>
+				<button ng-click="addServer(server)">+</button>
+				<button ng-click="removeServer(server)">x</button>
+			</div>
+			<button ng-click="toggleView()">save & close settings</button>
+		</div>
+	</div>
+</body>

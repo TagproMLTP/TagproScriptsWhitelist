@@ -1,0 +1,19 @@
+body{
+    padding: 15px;
+}
+
+body, select {
+    font-family: Arial;
+    font-size: 18pt;
+}
+
+.property {
+    clear: both;
+}
+
+.property .name
+{
+    float: left;
+    position: relative;
+    top: 3px;
+}

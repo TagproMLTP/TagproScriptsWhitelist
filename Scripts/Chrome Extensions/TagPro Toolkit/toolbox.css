@@ -1,0 +1,104 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+#sound{
+	width:120px!important;
+}
+
+#toptions{
+	color:white;
+	font-size:1.5em;
+	background-color:rgba(55,55,55,0.9);
+	border:10px solid #FFF;
+	width:50%;
+	height:50%;
+	position:fixed;
+	left:47.5%;
+	top:47.5%;
+	display:none;
+	z-index:1000;
+	padding:2.5% 2.5% 2.5% 2.5%;
+}
+
+#toptions p:hover{
+	background-color: rgba(255,255,255,0.05);
+}
+
+/*
+#toptions input{
+	color:rbg(0,0,0);
+	background:rgb(200,200,200);
+	border: 1px solid gray;
+}
+*/
+
+#tabs button{
+	display: inline-block;
+	background-color: #ACE600;
+	color: #000000;
+	font-size: 1em;
+	text-align: center;
+	font-weight: bold;
+	font-family: monospace;
+	border: solid 3px #608100;
+	padding: 5px 10px 5px 10px;
+	cursor: pointer;
+}
+
+
+#tm-title{
+	font-size: 2em; 
+	/*background-color:rgba(0,0,0,0.5); */
+	color: white; text-align: 
+	center; margin-top: -10px;
+}
+
+#user-tag{width:auto;}
+#user-tag:hover{text-decoration:underline;}
+
+#overlay-back {
+    position   : fixed;
+    top        : 0;
+    left       : 0;
+    width      : 100%;
+    height     : 100%;
+    background : #000;
+    opacity    : 0.9;
+    z-index    : 5;
+	}
+#stats-buttons{
+	text-align: center;
+}
+
+#stats-buttons button{
+	display: inline-block;
+	background-color: #ACE600;
+	color: #000000;
+	font-size: 1em;
+	text-align: center;
+	font-weight: bold;
+	font-family: monospace;
+	border: solid 3px #608100;
+	padding: 5px 10px 5px 10px;
+	cursor: pointer;
+
+}
+
+table.board{
+	background-color: rgba(255,255,255,0.05)!important;
+}
+
+table.board th{
+	background-color: transparent!important;
+}
+
+table.board tr:hover{
+	background-color: rgba(255,255,255,0.05)!important;
+}
+
+
+table.board td.alt{
+	background-color: transparent!important;
+}
+	

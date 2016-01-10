@@ -1,0 +1,23 @@
+{
+   "background": {
+      "scripts": [ "background.js" ]
+   },
+   "content_scripts": [ {
+      "css": [ "toolbox.css" ],
+      "js": [ "main.js" ],
+      "matches": [ "http://*.koalabeast.com/*", "http://tangent.jukejuice.com/*", "http://maptest.newcompte.fr/*" ],
+      "run_at": "document_start"
+   } ],
+   "description": "Adds useful features to the webgame TagPro.",
+   "icons": {
+      "128": "img/logo128.png",
+      "16": "img/logo16.png",
+      "48": "img/logo48.png"
+   },
+   "manifest_version": 2,
+   "name": "TagPro Toolkit",
+   "permissions": [ "storage", "activeTab" ],
+   "update_url": "https://clients2.google.com/service/update2/crx",
+   "version": "0.3.1",
+   "web_accessible_resources": [ "js/profile.js", "js/boards.js", "jquery.js", "options.html", "img/logo32.png", "js/profile-stats.js", "js/user-tags.js", "js/draw-tags.js", "js/profile-tags.js", "img/spin_outline.png", "js/macros.js" ]
+}

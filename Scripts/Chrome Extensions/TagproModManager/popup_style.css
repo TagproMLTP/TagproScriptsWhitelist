@@ -1,0 +1,93 @@
+body {
+	width: 468px;
+	background: #000;
+	margin: 10px 10px 10px 10px;
+}
+
+h1 {
+	font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
+	color: #fff;
+
+	margin-top: 0;
+	margin-bottom: 10px;
+}
+
+h2 {
+	font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
+	color: #ccc;
+	font-size: 20px;
+
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+ul.mods {
+	list-style: none;
+	padding-left: 0;
+	margin-left: 0;
+
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+ul.mods :last-child {
+	margin-right: 0;
+}
+
+li.mod {
+	float: left;
+	margin-right: 10px;
+	margin-bottom: 10px;
+
+	width: 140px;
+	height: 100px;
+
+	background: #fdd;
+
+	border: 3px solid white;
+	position: relative;
+}
+
+li.mod.sidmatch {
+	border-color: green;
+}
+
+li.mod.sidmatch .modinfo {
+	color: #cfc;
+}
+
+div.modinfo {
+	position: absolute;
+	bottom: 0;
+	background: rgba(0,0,0,0.6);
+	color: white;
+	width: 134px;
+	font-family: monospace;
+	padding: 1px 3px 2px 3px;
+}
+
+div.modtitle {
+	font-size: 14px;
+	font-weight: bold;
+}
+
+div.modauthor {
+	font-size: 11px;
+	overflow: hidden;
+	white-space: nowrap;
+	-ms-text-overflow: ellipsis;
+	text-overflow: ellipsis;
+}
+
+div#loader {
+	font-family: monospace;
+	color: #ACE600;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+span#loadtext {
+	position: relative;
+	bottom: 8px;
+	left: 6px;
+}

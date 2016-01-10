@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+    <head>
+        <title>TagPro MapInfo</title>
+    </head>
+    <body>
+        <style type="text/css">
+        	#mainPopup {
+        		padding: 10px;
+        		font-family: Helvetica, Ubuntu, Arial, sans-serif;
+        	}
+        	h1 {
+        		font-size: 2em;
+        	}
+            input {
+                margin-right: 10px;
+                margin-bottom: 20px;
+            }
+            td {
+                background-color: rgba(0,0,0,.2);
+            }
+            #leftColumn {
+                float: left;
+            }
+            #rightColumn {
+                float: left;
+                margin-left: 30px;
+            }
+            #makeOwnTitle {
+                margin-top: 40px;
+            }
+            input[type='checkbox'] {
+                margin: 0px;
+            }
+        </style>
+
+        <div id="mainPopup">
+            <h1>TagPro MapInfo</h1>
+            <p></p>
+            <div id="leftColumn">
+                <p><h2>Default Metrics</h2></p>
+                <table id="defaultMetrics">
+                    <thead><tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Don't Display</th>
+                    </tr></thead>
+                    <tbody></tbody>
+                </table>
+                <p></p>
+            </div>
+            <div id="rightColumn">
+                <p><h2>User Defined Metrics</h2></p>
+                <table id="userMetrics">
+                    <thead><tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Formula</th>
+                        <th>Don't Display</th>
+                        <th></th>
+                    </tr></thead>
+                    <tbody></tbody>
+                </table>
+                <button id="moveButton">Rearrange Formulae</button>
+                
+                <h2 id="makeOwnTitle">Make Your Own</h2>
+                <p>Make your own map metrics here. Type a name in the "Name" input box and then a formula in the "Formula" box.<br>You can reference other metrics by using a $ followed by the ID of the metric you want to use. <br>So, if I wanted to make a metric that adds all goal tiles together and divides by area, I would type:<br><br><strong>($31 + $32) / $3</strong><br><br>Once you've made your own, you can reference those too. Just make sure not to delete any formulae that are referenced by other formulae or there will be errors.</p>
+
+                <p>Acceptable operators/symbols for formulae are as follows (all other characters will be ignored):
+                <br><table><tbody>
+                    <tr><td>()</td><td>Parentheses for grouping</td></tr>
+                    <tr><td>+</td><td>Addition</td></tr>
+                    <tr><td>-</td><td>Subtraction</td></tr>
+                    <tr><td>*</td><td>Multiplication</td></tr>
+                    <tr><td>/</td><td>Division</td></tr>
+                    <tr><td>0-9</td><td>Numbers</td></tr>
+                </tbody></table>
+                <br>If you need to do more fine-tuning, it will have to be done after the csv is saved.
+                </p>
+                <label for='nameInput'>Name:</label>
+                <input type=text id='nameInput'></input>
+                <label for='formulaInput'> Formula:</label>
+                <input type=text id="formulaInput"></input><button id="saveButton">Save Formula</button>
+                <button id="reset">Delete All Formulae</button>
+            </div>
+        </div>
+        <script type="text/javascript" src="/lib/jquery.min.js"></script>
+        <script type="text/javascript" src="/lib/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="/lib/jquery.classywiggle.min.js"></script>
+        <script type="text/javascript" src="/src/page_action/page_action.js"></script>
+    </body>
+</html>
