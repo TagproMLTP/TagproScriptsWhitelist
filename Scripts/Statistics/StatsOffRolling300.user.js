@@ -4,7 +4,7 @@
 // @version         1.0.0
 // @include         http://tagpro*.koalabeast.com*
 // @require         https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js
-// @updateURL       https://gist.github.com/nabbynz/9c3e5de9690483cb2871/raw/STATS_OFF_R300_Timeline.user.js
+// @updateURL       https://github.com/TagproMLTP/TagproScriptsWhitelist/blob/master/Scripts/Statistics/StatsOffRolling300.user.js
 // @downloadURL     https://gist.github.com/nabbynz/9c3e5de9690483cb2871/raw/STATS_OFF_R300_Timeline.user.js
 // @grant           GM_setValue
 // @grant           GM_getValue
